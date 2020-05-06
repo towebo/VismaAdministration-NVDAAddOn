@@ -1,4 +1,7 @@
-﻿import appModuleHandler
+﻿import wx
+import config
+import gui
+import appModuleHandler
 from NVDAObjects.UIA import UIA
 from NVDAObjects.window import Window
 import UIAHandler
@@ -10,6 +13,10 @@ import ui
 import tones
 from logHandler import log
 
+
+
+
+
 # For convenience.
 ExtraUIAEvents = {
 #    UIAHandler.UIA_AutomationFocusChangedEventId: "UIA_AutomationFocusChanged",
@@ -18,20 +25,27 @@ ExtraUIAEvents = {
 }
 
 
+
+
 class AppModule(appModuleHandler.AppModule):
 
     def __init__(self, *args, **kwargs):
         super(AppModule, self).__init__(*args, **kwargs)
         # Add a series of events instead of doing it one at a time.
         # Some events are only available in a specific build range and/or while a specific version of IUIAutomation interface is in use.
-        log.debug("SpcsAdm: adding additional events")
+        #log.debug("SpcsAdm: adding additional events")
         for event, name in ExtraUIAEvents.items():
             if event not in UIAHandler.UIAEventIdsToNVDAEventNames:
                 UIAHandler.UIAEventIdsToNVDAEventNames[event] = name
                 UIAHandler.handler.clientObject.addAutomationEventHandler(event,UIAHandler.handler.rootElement,UIAHandler.TreeScope_Subtree,UIAHandler.handler.baseCacheRequest,UIAHandler.handler)
-                log.debug("SpcsAdm: added event ID %s, assigned to %s"%(event, name))
-
-
+                #log.debug("SpcsAdm: added event ID %s, assigned to %s"%(event, name))
+                
+        confspec = {
+            'debugMode': 'boolean(default=false)',
+            'sayNumGridRows': 'boolean(default=false)'
+        }
+        config.conf.spec['VismaAdministration'] = confspec
+        gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(VismaAdministrationSettingsPanel)
 
 
     def event_NVDAObject_init(self, obj):
@@ -606,11 +620,12 @@ class AppModule(appModuleHandler.AppModule):
             
 
         else:
-            if obj.windowClassName == "Button" or obj.windowClassName == "Edit" or obj.windowClassName == "ComboBox":
-                try:
-                    obj.name = "%s, %d, %s" % ( obj.displayText, obj.windowControlID, obj.windowClassName )
-                except:
-                    obj.name = "%d, %s" % ( obj.windowControlID, obj.windowClassName )
+            if config.conf['VismaAdministration']['debugMode']:
+                if obj.windowClassName == "Button" or obj.windowClassName == "Edit" or obj.windowClassName == "ComboBox":
+                    try:
+                        obj.name = "%s, %s, %d, %s" % ( obj.name, obj.displayText, obj.windowControlID, obj.windowClassName )
+                    except:
+                        obj.name = "%d, %s" % ( obj.windowControlID, obj.windowClassName )
 
             
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
@@ -626,7 +641,8 @@ class VismaSafGrid(UIA):
 
     def event_gainFocus(self):
         try:
-            ui.message("Listan har %d rader" % self._get_rowCount())
+            if config.conf['VismaAdministration']['sayNumGridRows']:
+                ui.message("Listan har %d rader" % self._get_rowCount())
             #ui.message("Rad %d är markerad" % self._get_rowNumber())
             self.ReadGridSelection()
         except Exception as e:
@@ -639,6 +655,12 @@ class VismaSafGrid(UIA):
         self.ReadGridSelection()
         nextHandler
 
+    def script_readNumGridRows(self, gesture):
+        # Pass the keystroke along
+        #gesture.send()
+        ui.message("Listan har %d rader" % self._get_rowCount())
+        ui.message("Rad %d är markerad" % self._get_rowNumber())
+
     def script_readGridSelection(self, gesture):
         # Pass the keystroke along
         #gesture.send()
@@ -647,7 +669,9 @@ class VismaSafGrid(UIA):
         
     def ReadGridSelection(self):
         try:
-            #gridpat = self._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
+            #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
+            #tablepat = nav._getUIAPattern(UIAHandler.UIA_TablePatternId,UIAHandler.IUIAutomationTablePattern)
+            #tableitempat = nav._getUIAPattern(UIAHandler.UIA_TableItemPatternId,UIAHandler.IUIAutomationTableItemPattern)
             #selpat = nav._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
             selpat = self._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
             
@@ -682,8 +706,11 @@ class VismaSafGrid(UIA):
                         if ischeckbox:
                             if valtxt == "1":
                                 valtxt = "Ja"
+                                valtxt = ""
                             elif valtxt == "0":
                                 valtxt = "Nej"
+                                valtxt = ""
+                                coltxt = ""
                     ui.message("%s, %s" % (coltxt, valtxt))
             # A grid that selects each cell
             else:
@@ -693,7 +720,7 @@ class VismaSafGrid(UIA):
                     coltxt = selement.CurrentName
                     ischeckbox = False
                     # Checkboxes
-                    if coltxt == "Skriv":
+                    if coltxt == "Skriv" or coltxt == "Skriv order" or coltxt == "Skriv följ" or coltxt == "Restn ej":
                         ischeckbox = True
                     
                     punk = selement .getCurrentPattern(UIAHandler.UIA_ValuePatternId)
@@ -712,7 +739,8 @@ class VismaSafGrid(UIA):
             
     
     __gestures = {
-        "kb:NVDA+m": "readGridSelection"
+        "kb:NVDA+m": "readGridSelection",
+        "kb:NVDA+r": "readNumGridRows"
         #"kb:NVDA+i": "readControlInfo"
         #"kb:downarrow": "readGridSelection",
         #"kb:uparrow": "readGridSelection",
@@ -721,4 +749,23 @@ class VismaSafGrid(UIA):
     }
 
 
-                        
+class VismaAdministrationSettingsPanel(gui.SettingsPanel):
+    # Translators: the label/title for the Visma Administration settings panel.
+    title = _('Visma Administration')
+
+    def makeSettings(self, settingsSizer):
+        helper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+        # Translators: the label for the preference to choose the maximum number of stored history entries
+        #maxHistoryLengthLabelText = _('&Maximum number of history entries (requires NVDA restart to take effect)')
+        #self.maxHistoryLengthEdit = helper.addLabeledControl(maxHistoryLengthLabelText, nvdaControls.SelectOnFocusSpinCtrl, min=1, max=5000, initial=config.conf['speechHistory']['maxHistoryLength'])
+        # Translators: the label for the preference to trim whitespace from the start of text
+        self.debugModeCB = helper.addItem(wx.CheckBox(self, label=_('Utvecklarläge (Ger onödigt mycket information)')))
+        self.debugModeCB.SetValue(config.conf['VismaAdministration']['debugMode'])
+        # Translators: Nothig to see here
+        self.sayNumGridRowsCB = helper.addItem(wx.CheckBox(self, label=_('Säg antalet rader för listor automatiskt')))
+        self.sayNumGridRowsCB.SetValue(config.conf['VismaAdministration']['sayNumGridRows'])
+
+    def onSave(self):
+        config.conf['VismaAdministration']['debugMode'] = self.debugModeCB.GetValue()
+        config.conf['VismaAdministration']['sayNumGridRows'] = self.sayNumGridRowsCB.GetValue()
+
