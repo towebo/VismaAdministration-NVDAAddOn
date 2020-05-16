@@ -1,4 +1,6 @@
-﻿import wx
+﻿import os
+import api
+import wx
 import config
 import gui
 import appModuleHandler
@@ -15,6 +17,35 @@ from logHandler import log
 
 
 
+# Constants
+MODULE_UNKNOWN = "Unknown"
+MODULE_OFFER = "Offert"
+MODULE_ORDER = "Order"
+MODULE_INVOICE = "Kundfaktura"
+MODULE_AGREEMENT_TEMPLATE = "Avtalsmall"
+MODULE_AGREEMENT = "Avtal"
+MODULE_ARTICLE = "Artiklar och tjänster"
+MODULE_CUSTOMER = "Kunder"
+MODULE_SUPPLIER = "Leverantörer"
+MODULE_GENERAL = "Allmän"
+MODULE_BOOKINGS = "Beställning"
+MODULE_DELIVERYNOTE = "Inkommande följesedel"
+MODULE_SUPPLIERINVOICE = "Leverantörsfaktura"
+MODULE_CONTACTS = "Kontakter"
+MODULE_PRICELIST = "Prislistor"
+MODULE_MANUALDELIVERYIN = "Manuell inleverans"
+MODULE_MANUALDELIVERYOUT = "Manuell utleverans"
+MODULE_INVENTORY = "Inventering"
+MODULE_PRICEIMPORT = "Prisinläsning"
+MODULE_PRICERECALCULATION_ESTIMATEDPRICES = "Prisomräkning kalkylpriser"
+MODULE_PRICERECALCULATION_SUPPLIERPRICES = "Prisomräkning leverantörspriser"
+MODULE_INGOINGBALLANCE = "Ingående balans"
+MODULE_VERIFICATIONS = "Verifikationer"
+
+MODULE_RESULTBUDGET= "Resultatbudget"
+MODULE_RESULTPROGNOZE = "Resultatprognos"
+MODULE_BALLANCEBUDGET = "Balansbudget"
+MODULE_BALLANCEPROGNOZE = "Balansprognos"
 
 
 # For convenience.
@@ -634,6 +665,101 @@ class AppModule(appModuleHandler.AppModule):
 
 #    def ReadControlInfo(self):
 #        ui.message("%s" % self.windowControlID)
+
+    def getCurrentVismaModule(self):
+        try:
+            wnd = api.getFocusObject()
+            if wnd is None:
+                return MODULE_UNKNOWN
+            while wnd is not None and isinstance(wnd, Window) and not wnd.windowClassName.startswith('Afx:'):
+                wnd = wnd.parent
+                if wnd is None:
+                    return MODULE_UNKNOWN
+                #log.debug(wnd.windowClassName)
+                #ui.message(wnd.windowClassName)
+            wndtxt = wnd.windowText.lower()
+            if wndtxt.startswith('order'):
+                return MODULE_ORDER
+            elif wndtxt.startswith('kundfakt'):
+                return MODULE_INVOICE
+            elif wndtxt.startswith('offerter'):
+                return MODULE_OFFER
+            elif wndtxt.startswith('kunder'):
+                return MODULE_CUSTOMER
+            elif wndtxt.startswith('leverantörer'):
+                return MODULE_SUPPLIER
+            elif wndtxt.startswith('artiklar'):
+                return MODULE_ARTICLE
+            elif wndtxt.startswith('beställningar'):
+                return MODULE_BOOKINGS
+            elif wndtxt.startswith('inkommande följ'):
+                return MODULE_DELIVERYNOTE
+            elif wndtxt.startswith('leverantörsfakturor'):
+                return MODULE_SUPPLIERINVO
+            elif wndtxt.startswith('kontakter'):
+                return MODULE_CONTACTS
+            elif wndtxt.startswith('avtalsmall'):
+                return MODULE_AGREEMENT_TEMPLATE
+            elif wndtxt.startswith('avtal'):
+                return MODULE_AGREEMENT
+            elif wndtxt.startswith('försäljningsprislis'):
+                return MODULE_PRICELIST
+            elif wndtxt.startswith('manuella inleveranser'):
+                return MODULE_MANUALDELIVERYIN
+            elif wndtxt.startswith('manuella utleveranser'):
+                return MODULE_MANUALDELIVERYOU
+            elif wndtxt.startswith('inventering'):
+                return MODULE_INVENTORY
+            elif wndtxt.startswith('prisinläsning'):
+                return MODULE_PRICEIMPORT
+            elif wndtxt.startswith('prisomräkning kalkyl'):
+                return MODULE_PRICERECALCULATION_ESTIMATEDPRICES
+            elif wndtxt.startswith('prisomräkning lev'):
+                return MODULE_PRICERECALCULATION_SUPPLIE
+            elif wndtxt.startswith('ingående balans'):
+                return MODULE_INGOINGBALLANCE
+            elif wndtxt.startswith('verifikationer'):
+                return MODULE_VERIFICATIONS
+            elif wndtxt.startswith('resultatbudg'):
+                return MODULE_RESULTBUDGET
+            elif wndtxt.startswith('resultatprognos'):
+                return MODULE_RESULTPROGNOZE
+            elif wndtxt.startswith('balansbudget'):
+                return MODULE_BALLANCEBUDGET
+            elif wndtxt.startswith('balansprognos'):
+                return MODULE_BALLANCEPROGNOZE
+
+            return "Fönstertext " + wndtxt
+        except Exception as e:
+            ui.message("Fel: %s" % e)
+
+
+    def doReadVismaCommands(self):
+        try:
+            modul = self.getCurrentVismaModule()
+            ui.message(modul)
+            fn = os.path.dirname(os.path.abspath(__file__)) + "\\shortcuts.txt"
+            with open(fn, 'r') as f:
+                helplines = f.read().splitlines()
+                modulehelplines = [k for k in helplines if modul in k]
+                ui.message("Det finns %d kortkommandon" % len(modulehelplines))
+                for line in modulehelplines:
+                    lineparts = line.split('\t')
+                    keys = ""
+                    for c in lineparts[3]:
+                        keys = keys + c + " "
+                    txt = "%s %s, Alt + K %s, %s" % (lineparts[1], lineparts[2], keys, lineparts[4])
+                    ui.message(txt)
+        except Exception as e:
+            ui.message("Fel: %s" % e)
+
+
+    def script_readVismaCommands(self, gesture):
+        self.doReadVismaCommands()
+
+    __gestures = {
+        "kb:NVDA+h": "readVismaCommands"
+    }
 
 
 class VismaSafGrid(UIA):
