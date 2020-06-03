@@ -1,0 +1,276 @@
+WindowClassName	windowControlID 	Module	Text	Comment
+SafGrid	7407		Företagslista	
+SafGrid	21346		Lista	
+SafGrid	21516		Artiklar	
+SafGrid	7319		Aktiva kolumner	
+SafGrid	7320		Tillgängliga kolumner	
+SafGrid	7221		Företag i säkerhetskopian	
+SafGrid	23569		Rättigheter	
+SysTabControl32	59648		Detaljsidor	
+Edit	22612		Artikelnummer	Artikelkort, flik 1
+Edit	22613		Benämning	
+Edit	22614		Annan benämning	
+Edit	22615		Kortnamn	
+Edit	22616		Artikelgrupp	
+Edit	22619		Enhet	
+Edit	22617		Konteringskod	
+Edit	22709		Streckkod	
+ComboBox	21657		Streckkodstyp	
+Edit	22620		Sorteringsbegrepp	
+Edit	22643		Exportkod	
+Button	22641		Restnotera ej	
+Button	22618		Lagervara	
+Button	22652		Utgående	
+Button	25050		Inaktiv	
+Button	23606		Webshopartikel	
+Edit	22708		Dokument	
+Edit	22644		Anmärkning 1	
+Edit	22645		Anmärkning 2	
+Edit	24279		Ursprungslandskod	Artikelkort, flik 2
+Edit	22642		Ursprungsland	
+Edit	22628		Lagerplats	
+Edit	22629		Vikt	
+Edit	22630		Volym	
+Button	22657		Lagervärdet är inaktivt	
+Edit	v		Normal leveranstid	Artikelkort, flik 3
+Edit	22631		Huvudleverantör	
+Edit	22653		Kalkylpris, inpris	
+Edit	22654		Kalkylpris, frakt	
+Edit	22655		Kalkylpris, övrigt	
+Edit	22623		Beställningspunkt	
+Edit	22625		Maxnivå	
+Edit	22624		Minsta beställning	
+ComboBox	22673		Spårning	Artikelkort, flik 6
+Edit	22308	Order	Ordernummer	Orderkort, flik 1
+Edit	22308	Kundfaktura	Fakturanummer	
+Edit	22308	Offert		
+Edit	22332		Kundnummer	
+Edit	22333		Namn	
+Edit	22344		Er referens	
+Edit	22346		Vår referens	
+Edit	23613		Kontraktsnummer	
+Edit	22362		Betalningsvillkor	
+Edit	22363		Leveransvillkor	
+Edit	22364		Leveranssätt	
+Edit	23658		Speditör	
+Edit	22385		Resultatenhet	
+Edit	22384		Projekt	
+Edit	22316	Offert	Offertdatum	
+Edit	22316	Order	Orderdatum	
+Edit	22316	Kundfaktura	Fakturadatum	
+Edit	22317	Offert	Giltig till och med	
+Edit	22317	Order	Leveransdatum	
+Edit	22317	Kundfaktura	Förfallodatum	
+Edit	22331		Ert referensnummer	
+Edit	23631		Leveransdatum	
+Edit	22345		Ert ordernummer	
+Edit	24346		Referenskod	
+Edit	22359		Fakturarabatt i procent	
+Edit	22377		Frakt	
+Button	22356		Inklusive moms	
+Edit	22379		Expeditionsavgift	
+Button	22313		Ej klar	
+Button	22318		Levererad	
+Button	22315		Makulerad	
+Button	21306		Journalförd	
+Button	22314	Order	Ordererkännande utskrivet	
+Button	22314	Kundfaktura	Faktura utskriven	
+Button	22319		Plocklista utskriven	
+Button	22320		Följesedel utskriven	
+Button	21196		Restorder	
+Button	21229		Fakturerad	
+ComboBox	24932	Order	Ordererkännande, utskriftsval	
+ComboBox	24932	Kundfaktura	Faktura, utskriftsval	
+ComboBox	24986		Följesedel	
+Edit	22334		Postadress	Orderkort, flik 2
+Edit	22543		Postadress rad 2	
+Edit	23733		GLN	
+Edit	22335		Postnummer	
+Edit	22336		Ort	
+Edit	23596		Landskod	
+Edit	22337		Land	
+Edit	22410		VAT-nummer	
+Edit	22347		Distrikt	
+Edit	22348		Säljare	
+Edit	22361		Rabattavtal	
+Edit	22358		Prislista	
+Edit	22349		Språk	
+Edit	22350		Valuta	
+Edit	22351		Kurs/enhet	
+Edit	22338		Avvikande leveransadress, Namn	
+Edit	22339		Avvikande leveransadress, rad 1	
+Edit	22545		Avvikande leveransadress, rad 2	
+Edit	23736		Avvikande leveransadress, GLN	
+Edit	22340		Avvikande leveransadress, Postnummer	
+Edit	22341		Avvikande leveransadress, Ort	
+Edit	23597		Avvikande leveransadress, Landskod	
+Edit	22342		Avvikande leveransadress, Land	
+Button	22355		Export	
+Button	22354		Räntefakturering	
+Button	22352		Betalningspåminnelse	
+Button	22353		Påminnelseavgift	
+Button	22357		Restnotera ej	
+Button	22411		Samlingsfakturera	
+Button	24122		Överför adress till beställning	
+Button	25083		Hämtad - Visma Webbfakturering	
+Edit	22365		Text 1	
+Edit	22366		Text 2	
+Edit	22367		Text 3	
+Edit	25028		AutoInvoice-bilaga	
+Button	22584		Spara text	
+Button	22547		EU Periodisk sammanställning	
+Edit	22378	Order	Momskod	Orderkort, flik 3
+Edit	22378	Kundfaktura	Momskod, Frakt	
+Edit	22380		Momskod, Expeditionsavgift	
+Edit	22369		Procentsats, momskod 1	
+Edit	22370		Procentsats, momskod 2	
+Edit	22371		Procentsats, momskod 3	
+Edit	22416		Procentsats, momskod 4	
+Button	22548		Mellanman i trepartshandel EU	
+Edit	22326		Ränta i procent	
+Edit	22327		Konto för kundfordran	
+Edit	22329		Konto för expeditionsavgift	
+Edit	22328		Konto för frakt	
+Edit	22404		Konto för momskod 1	
+Edit	22405		Konto för momskod 2	
+Edit	22406		Konto för momskod 3	
+Edit	22419		Konto för momskod 4	
+Edit	22407		Konto för avrundning	
+Edit	22408		Given rabatt	
+Edit	22309	Order	Offertnummer / Datum	Orderkort, flik 4 - Spårning
+Edit	22309	Kundfaktura	Ordernummer / Datum	
+Edit	22310	Order	Fakturanummer / Datum	
+Edit	22310	Kundfaktura	Avtalsnummer	
+Edit	22311	Order	Restorder / Datum	
+Edit	22311	Kundfaktura	Journalnummer	
+Edit	22312		Ursprungsorder / Datum	
+Edit	21274		Offertnummer / Datum	
+Edit	22414		Verifikationsnummer	
+Edit	24044		F U-nummer	
+Edit	22312		Ursprungsorder / Datum	Fakturakort, flik 1
+Edit	23179		Leverantörsnummer	Leverantörskort, flik 1
+Edit	23180		Namn	
+Edit	23191		Organisationsnummer	
+Button	15162		Hämta uppgifter	
+Edit	23181		Kortnamn	
+Edit	23182		Postadress	
+Edit	23221		Postadress rad 2	
+Edit	23734		GLN	
+Edit	23183		Besöksadress	
+Edit	23184		Postnummer	
+Edit	23185		Ort	
+Edit	23210		Landskod	
+Edit	23186		Land	
+Edit	23187		Telefon	
+Edit	23188		Telefon 2	
+Edit	23189		Fax	
+Edit	23787		Referenskod	
+Edit	23190		Er referens	
+Edit	20748		Mobiltelefon	
+Button	24921		Skicka SMS	
+Edit	23228		E-post	
+Edit	23229		WWW	
+Edit	23209		Vår referens	
+Edit	23206		Sorteringsbegrepp	
+Button	25049		Inaktiv	
+Button	26256		Autogiro	
+Button	23230		Kräver OCR / Referenskod	
+Button	23220		Utlandsbetalningar	
+Edit	23196		Vårt kundnummer	
+Edit	23194		Bankgiro	
+Edit	23195		PlusGiro	
+Edit	21770		Konteringsmall	
+Edit	24824		Resultatenhet	
+Edit	24825		Projekt	
+Edit	23197		Kreditgräns	
+Edit	23193		Språk	
+Edit	23192		Valuta	
+Edit	23198		Betalningsvillkor	
+Edit	23207		Leveransvillkor	
+Edit	23208		Leveranssätt	
+Edit	23232		Dokument	
+Edit	23204		Anmärkning 1	
+Edit	23205		Anmärkning 2	
+Button	24920		Visma Kreditupplysning	
+Edit	23213		BIC	Leverantörskort, flik 2
+Edit	23214		Bankkod	
+Edit	23215		Bank	
+Edit	23216		Adress	
+Edit	23218		Postnummer	
+Edit	23219		Ort	
+Edit	26515		Landskod	
+Edit	23211		Betalningskod	
+Edit	23212		Mottagarnummer	
+ComboBox	23590		Avgiftskod	
+Button	23231		Betalas med valutakonto / ficka	
+Button	24974		Kontrollera om leverantören kan ta emot e-beställning	Leverantörskort, flik 4
+Button	24990		Kopia till leverantör	
+Edit	22423		Kundnummer	Kund, flik 1
+Edit	22424		Namn	
+Edit	22444		Organisationsnummer	
+Edit	22426		Postadress rad 1	
+Edit	22542		Postadress rad 2	
+Edit	23732		GLN	
+Edit	22427		Besöksadress	
+Edit	22428		Postnummer	
+Edit	22429		Ort	
+Edit	23600		Landskod	
+Edit	22430		Land	
+Edit	22483		VAT-nummer	
+Edit	22431		Telefon	
+Edit	22432		Telefon 2	
+Edit	23628		Telefon 3	
+Edit	22433		Fax	
+Edit	22425		Kortnamn	
+Edit	23808		Referenskod	
+Edit	22443		Referens	
+Edit	20747		Mobiltelefon	
+Edit	22485		E-post	
+Edit	22434		Avvikande Leveransadress, namn	
+Edit	22435		Avvikande Leveransadress, rad 1	
+Edit	22544		Avvikande Leveransadress, rad 2	
+Edit	23735		23735	
+Edit	23735		Avvikande Leveransadress, GLN	
+Edit	22436		Avvikande Leveransadress, besöksadress	
+Edit	22437		Avvikande Leveransadress, postnummer	
+Edit	22438		Avvikande Leveransadress, ort	
+Edit	23601		Avvikande Leveransadress, landskod	
+Edit	22439		Avvikande Leveransadress, land	
+Edit	22440		Avvikande Leveransadress, telefon	
+Edit	22441		Avvikande Leveransadress, telefon 2	
+Edit	23626		Avvikande Leveransadress, telefon 3	
+Edit	22442		Avvikande Leveransadress, fax	
+Edit	22446		Kundkategori	
+Edit	22447		Distrikt	
+Edit	22448		Säljare	
+Edit	22450		Betalningsvillkor	Kund, flik 2
+Edit	22449		Leveransvillkor	
+Edit	22451		Leveranssätt	
+Edit	23737		Speditör	
+Edit	22457		Språk	
+Edit	22456		Valuta	
+Edit	24821		Resultatenhet	
+Edit	24822		Projekt	
+Edit	22481		Sorteringsbegrepp	
+Edit	22479		Bankgiro	
+Edit	22480		PlusGiro	
+Edit	22467		Kreditgräns i kronor	
+Edit	22458		Rabattavtal	
+Edit	22486		Dokument	
+Edit	22465		Anmärkning 1	
+Edit	22466		Anmärkning 2	
+Edit	26461		Fastighets-/lägenhetsbeteckning	
+Edit	26462		Bostadsrättsföreningens organisationsnummer	
+ComboBox	24838		Information på offert	Kund, flik 3
+ComboBox	24842		Information på order	
+ComboBox	24846		Information på följesedel	
+ComboBox	24849		Information på extra orderdokument	
+ComboBox	24852		Information på faktura	
+ComboBox	24856		Information på extra fakturadokuments	
+ComboBox	24859		Information på påminnelse	
+Button	7315		Lägg till kolumn	Kolumndialog
+Button	7316		Ta bort kolumn	
+Edit	6818		Sök	
+Edit	23566		Signatur	Behörighetskontroll
+Edit	23567		Namn	
+Edit	24655		E-postadress	
