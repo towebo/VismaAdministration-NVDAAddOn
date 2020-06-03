@@ -47,6 +47,7 @@ MODULE_RESULTPROGNOZE = "Resultatprognos"
 MODULE_BALLANCEBUDGET = "Balansbudget"
 MODULE_BALLANCEPROGNOZE = "Balansprognos"
 MODULE_ACCOUNTPLAN = "Kontoplan"
+MODULE_DISCOUNTAGREEMENTS = "Kundrabatter"
 
 
 # For convenience.
@@ -105,8 +106,11 @@ class AppModule(appModuleHandler.AppModule):
         if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
             clsList.insert(0, VismaSafGrid)
 
-#    def ReadControlInfo(self):
-#        ui.message("%s" % self.windowControlID)
+    def script_readControlInfo(self, obj):
+        wnd = api.getFocusObject()
+        module = self.getCurrentVismaModule(wnd)
+        txt = "Name: %s, WindowControlID: %d, WindowClassName: %s, VismaModule: %s" % ( wnd.name, wnd.windowControlID, wnd.windowClassName, module )
+        ui.message(txt)
 
     def getCurrentVismaModule(self, ctrl):
         try:
@@ -139,7 +143,7 @@ class AppModule(appModuleHandler.AppModule):
             elif wndtxt.startswith('inkommande följ'):
                 return MODULE_DELIVERYNOTE
             elif wndtxt.startswith('leverantörsfakturor'):
-                return MODULE_SUPPLIERINVO
+                return MODULE_SUPPLIERINVOICE
             elif wndtxt.startswith('kontakter'):
                 return MODULE_CONTACTS
             elif wndtxt.startswith('avtalsmall'):
@@ -159,7 +163,7 @@ class AppModule(appModuleHandler.AppModule):
             elif wndtxt.startswith('prisomräkning kalkyl'):
                 return MODULE_PRICERECALCULATION_ESTIMATEDPRICES
             elif wndtxt.startswith('prisomräkning lev'):
-                return MODULE_PRICERECALCULATION_SUPPLIE
+                return MODULE_PRICERECALCULATION_SUPPLIERPRICES
             elif wndtxt.startswith('ingående balans'):
                 return MODULE_INGOINGBALLANCE
             elif wndtxt.startswith('verifikationer'):
@@ -174,6 +178,8 @@ class AppModule(appModuleHandler.AppModule):
                 return MODULE_BALLANCEPROGNOZE
             elif wndtxt.startswith('kontoplan'):
                 return MODULE_ACCOUNTPLAN
+            elif wndtxt.startswith('kundrabatter'):
+                return MODULE_DISCOUNTAGREEMENTS
 
             return "Fönstertext " + wndtxt
         except Exception as e:
@@ -236,7 +242,8 @@ class AppModule(appModuleHandler.AppModule):
         self.doReadVismaCommands()
 
     __gestures = {
-        "kb:NVDA+h": "readVismaCommands"
+        "kb:NVDA+h": "readVismaCommands",
+        "kb:NVDA+i": "readControlInfo"
     }
 
 
@@ -245,6 +252,8 @@ class VismaSafGrid(UIA):
 
     def event_gainFocus(self):
         try:
+            if self.name != "Grid":
+                ui.message(self.name)
             if config.conf['VismaAdministration']['sayNumGridRows']:
                 ui.message("Listan har %d rader" % self._get_rowCount())
             #ui.message("Rad %d är markerad" % self._get_rowNumber())
@@ -349,7 +358,7 @@ class VismaSafGrid(UIA):
     __gestures = {
         "kb:NVDA+m": "readGridSelection",
         "kb:NVDA+r": "readNumGridRows"
-        #"kb:NVDA+i": "readControlInfo"
+        
 
     }
 

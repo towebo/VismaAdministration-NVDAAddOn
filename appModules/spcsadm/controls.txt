@@ -1,7 +1,25 @@
 WindowClassName	windowControlID 	Module	Text	Comment
 SafGrid	7407		Företagslista	
-SafGrid	21346		Lista	
-SafGrid	21516		Artiklar	
+SafGrid	21346	Offert	Offerter	
+SafGrid	21346	Order	Orderlista	
+SafGrid	21346	Kundfaktura	Fakturalista	
+SafGrid	21346	Avtal	Avtalslista	
+SafGrid	21346	Avtalsmallar	Avtalsmallista	
+SafGrid	21346	Kunder	Kundlista	
+SafGrid	21346	Kundrabatter	Rabattavtalslista	
+SafGrid	21516	Artiklar och tjänster	Artikellista	
+SafGrid	21516	Försäljningsprislistor	Prislistor	
+SafGrid	21516	Beställning	Beställningar	
+SafGrid	21516	Inkommande följesedel	Följesedlar	
+SafGrid	21516	Manuell inleverans	Manuella inleveranser	
+SafGrid	21516	Manuell utleverans	Manuella utleveranser	
+SafGrid	21516	Prisinläsning	Priser	
+SafGrid	21577	Prisomräkning kalkylpriser	Priser	
+SafGrid	21629	Inventering	Inventeringslista	
+SafGrid	24693	Kontakter	Kontaktlista	
+SafGrid	21666	Leverantörsfaktura	Leverantörsfakturor	
+SafGrid	21666	Leverantörer	Leverantörslista	
+SafGrid	21666	Prisomräkning leverantörspriser	Priser	
 SafGrid	7319		Aktiva kolumner	
 SafGrid	7320		Tillgängliga kolumner	
 SafGrid	7221		Företag i säkerhetskopian	
