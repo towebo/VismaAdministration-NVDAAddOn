@@ -19,13 +19,15 @@ SafGrid	21577	Prisomräkning kalkylpriser	Priser
 SafGrid	21629	Inventering	Inventeringslista	
 SafGrid	24693	Kontakter	Kontaktlista	
 SafGrid	21666	Leverantörsfaktura	Leverantörsfakturor	
+SafGrid	21769	Leverantörsfaktura	Beloppsrader	
+#NAMN?	21679	Leverantörsfaktura		Finns på flera flikar och innehåller olika data. Får hitta annat sätt att identifiera.
 SafGrid	21666	Leverantörer	Leverantörslista	
 SafGrid	21666	Prisomräkning leverantörspriser	Priser	
 SafGrid	7319		Aktiva kolumner	
 SafGrid	7320		Tillgängliga kolumner	
 SafGrid	7221		Företag i säkerhetskopian	
 SafGrid	23569		Rättigheter	
-SysTabControl32	59648		Detaljsidor	
+SysTabControl32	59648		Fliksidor	
 Edit	22612		Artikelnummer	Artikelkort, flik 1
 Edit	22613		Benämning	
 Edit	22614		Annan benämning	
@@ -295,3 +297,17 @@ Edit	6818		Sök
 Edit	23566		Signatur	Behörighetskontroll
 Edit	23567		Namn	
 Edit	24655		E-postadress	
+Edit	23233		Löpnummer	Leverantörsfaktura
+Edit	23234		Leverantörsnummer	
+Edit	23235		Namn	
+Edit	23240		Kundnummer	
+Edit	23239		Fakturanummer	
+Edit	23237		OCR / Referensnummer	
+Edit	23257		Konteringsmall	
+Edit	23251		Attest	
+Edit	23241		Fakturadatum	
+Edit	23242		Förfallodatum	
+Edit	23255		Resultatenhet	
+Edit	23254		Projekt	
+Edit	23243		Valuta	
+Edit	23244		Valutakurs	

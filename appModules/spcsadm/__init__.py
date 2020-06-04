@@ -123,7 +123,7 @@ class AppModule(appModuleHandler.AppModule):
                 wnd = wnd.parent
                 if wnd is None:
                     return MODULE_UNKNOWN
-                #log.debug(wnd.windowClassName)
+                log.debug("%s, %s, %d" % ( wnd.windowClassName, wnd.windowText, wnd.windowControlID ))
                 #ui.message(wnd.windowClassName)
             wndtxt = wnd.windowText.lower()
             if wndtxt.startswith('order'):
