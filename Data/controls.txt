@@ -1,5 +1,6 @@
 WindowClassName	windowControlID 	Module	Text	Comment
-SafGrid	7407		Företagslista	
+SafGrid	7407	spcsadm	Företagslista	
+SafGrid	7407	spcsfor	Föreningslista	
 SafGrid	21346	Offert	Offerter	
 SafGrid	21346	Order	Orderlista	
 SafGrid	21346	Kundfaktura	Fakturalista	
@@ -27,6 +28,7 @@ SafGrid	7319		Aktiva kolumner
 SafGrid	7320		Tillgängliga kolumner	
 SafGrid	7221		Företag i säkerhetskopian	
 SafGrid	23569		Rättigheter	
+SafGrid	21346	Medlemmar	Medlemslista	
 SysTabControl32	59648		Fliksidor	
 Edit	22612		Artikelnummer	Artikelkort, flik 1
 Edit	22613		Benämning	
@@ -226,9 +228,13 @@ ComboBox	23590		Avgiftskod
 Button	23231		Betalas med valutakonto / ficka	
 Button	24974		Kontrollera om leverantören kan ta emot e-beställning	Leverantörskort, flik 4
 Button	24990		Kopia till leverantör	
-Edit	22423		Kundnummer	Kund, flik 1
+Edit	22423	Kunder	Kundnummer	Kund, flik 1
+Edit	22423	Medlemmar	Medlemsnummer	Gemensam med medlemmar
+Edit	22487	Medlemmar	Förnamn	
+Edit	22424	Medlemmar	Efternamn	
 Edit	22424		Namn	
-Edit	22444		Organisationsnummer	
+Edit	22444	Kunder	Organisationsnummer	
+Edit	22444	Medlemmar	Personnummer	
 Edit	22426		Postadress rad 1	
 Edit	22542		Postadress rad 2	
 Edit	23732		GLN	
@@ -260,7 +266,19 @@ Edit	22440		Avvikande Leveransadress, telefon
 Edit	22441		Avvikande Leveransadress, telefon 2	
 Edit	23626		Avvikande Leveransadress, telefon 3	
 Edit	22442		Avvikande Leveransadress, fax	
-Edit	22446		Kundkategori	
+Edit	22446	Kunder	Kundkategori	
+Edit	22446	Medlemmar	Medlemskategori	
+Edit	22587	Medlemmar	Status	
+Edit	22588	Medlemmar	Uppdrag	
+Edit	22589	Medlemmar	Junior	
+Edit	22590	Medlemmar	Dam	
+Edit	22591	Medlemmar	Herr	
+Edit	22592	Medlemmar	Fotboll	
+Edit	22593	Medlemmar	Handboll	
+Edit	22594	Medlemmar	Gymnastik	
+Edit	22595	Medlemmar	Tidning	
+Edit	22596	Medlemmar	Cup	
+ComboBox	26572	Medlemmar	Kön	
 Edit	22447		Distrikt	
 Edit	22448		Säljare	
 Edit	22450		Betalningsvillkor	Kund, flik 2

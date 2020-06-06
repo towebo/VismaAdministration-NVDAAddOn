@@ -18,7 +18,6 @@ from logHandler import log
 
 
 # Constants
-MODULE_UNKNOWN = "Unknown"
 MODULE_OFFER = "Offert"
 MODULE_ORDER = "Order"
 MODULE_INVOICE = "Kundfaktura"
@@ -48,7 +47,7 @@ MODULE_BALLANCEBUDGET = "Balansbudget"
 MODULE_BALLANCEPROGNOZE = "Balansprognos"
 MODULE_ACCOUNTPLAN = "Kontoplan"
 MODULE_DISCOUNTAGREEMENTS = "Kundrabatter"
-
+MODULE_MEMBERS = "Medlemmar"
 
 # For convenience.
 ExtraUIAEvents = {
@@ -118,11 +117,11 @@ class AppModule(appModuleHandler.AppModule):
             if ctrl == None:
                 wnd = api.getFocusObject()
             if wnd is None:
-                return MODULE_UNKNOWN
+                return self.appName
             while wnd is not None and isinstance(wnd, Window) and not wnd.windowClassName.startswith('Afx:'):
                 wnd = wnd.parent
                 if wnd is None:
-                    return MODULE_UNKNOWN
+                    return self.appName
                 log.debug("%s, %s, %d" % ( wnd.windowClassName, wnd.windowText, wnd.windowControlID ))
                 #ui.message(wnd.windowClassName)
             wndtxt = wnd.windowText.lower()
@@ -180,6 +179,8 @@ class AppModule(appModuleHandler.AppModule):
                 return MODULE_ACCOUNTPLAN
             elif wndtxt.startswith('kundrabatter'):
                 return MODULE_DISCOUNTAGREEMENTS
+            elif wndtxt.startswith('medlemmar'):
+                return MODULE_MEMBERS
 
             return "Fönstertext " + wndtxt
         except Exception as e:
