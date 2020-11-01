@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<S-EDI xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RoutingInfo Test="false" Factoring="false" TestFactoring="false" Receipt2="false">
+    <SenderId1 xsi:nil="true" />
+    <SenderId2>5993876498</SenderId2>
+    <ReceiverId1 xsi:nil="true" />
+    <ReceiverId2 xsi:nil="true" />
+    <ReceiverId3>5938033692</ReceiverId3>
+    <DocumentType>Invoice</DocumentType>
+    <OutputMedia>Emedia</OutputMedia>
+    <Version>S-EDI_3_0</Version>
+    <OriginalFileVersion xsi:nil="true" />
+    <MessageId>6f907100-6547-4820-91eb-3adc1639bb23</MessageId>
+    <SenderServiceProviderId xsi:nil="true" />
+    <ReceiverServiceProviderId xsi:nil="true" />
+  </RoutingInfo>
+  <Invoice>
+    <Header>
+      <Created>2018-10-26T10:45:32</Created>
+      <ProgramVersion>InExchange</ProgramVersion>
+      <LegislationReference>
+        <VATIncluded xsi:nil="true" />
+        <EUInfo xsi:nil="true" />
+        <FTaxStatement>FTAX-SE</FTaxStatement>
+        <VATReference xsi:nil="true" />
+      </LegislationReference>
+      <InvoiceNo>11122</InvoiceNo>
+      <ContraEntryNo xsi:nil="true" />
+      <InvoiceDate>2018-05-07</InvoiceDate>
+      <PeriodStart xsi:nil="true" />
+      <PeriodEnd xsi:nil="true" />
+      <OriginalInvoiceDate xsi:nil="true" />
+      <DueDate>2018-05-07</DueDate>
+      <SellerOrderNo xsi:nil="true" />
+      <BuyerOrderNo xsi:nil="true" />
+      <DeliveryNoteNo xsi:nil="true" />
+      <OrderDate xsi:nil="true" />
+      <DeliveryDate xsi:nil="true" />
+      <EstimatedShipmentDate xsi:nil="true" />
+      <ShipmentDate xsi:nil="true" />
+      <PaymentTerms />
+      <DeliveryTerms xsi:nil="true" />
+      <DeliveryMethod xsi:nil="true" />
+      <CustomerNumber>1001</CustomerNumber>
+      <Interest>9.00</Interest>
+      <DaysBeforeInterest xsi:nil="true" />
+      <ReminderCharge xsi:nil="true" />
+      <OfferNo xsi:nil="true" />
+      <PaymentReference xsi:nil="true" />
+      <SellerContractNo xsi:nil="true" />
+      <SellerContractDesc xsi:nil="true" />
+      <PriceListNo xsi:nil="true" />
+      <DiscountContractNo xsi:nil="true" />
+      <SellerParty>
+        <Name>Visma Utbildning (TEST) 02</Name>
+        <Address1>Testvägen 22</Address1>
+        <Address2 xsi:nil="true" />
+        <VisitingAddress xsi:nil="true" />
+        <PostCode>35552</PostCode>
+        <PostOffice>Växjö</PostOffice>
+        <CountryCode>SE</CountryCode>
+        <Country xsi:nil="true" />
+        <Reference xsi:nil="true" />
+        <CompanyNo>5993876498</CompanyNo>
+        <EANLocationNo xsi:nil="true" />
+        <AlternativeSellerId xsi:nil="true" />
+        <BankAccount xsi:nil="true" />
+        <PostAccount>1760990</PostAccount>
+        <BankAccountNo xsi:nil="true" />
+        <Telephone>78115121222</Telephone>
+        <Telephone2 xsi:nil="true" />
+        <Telephone3 xsi:nil="true" />
+        <Telefax xsi:nil="true" />
+        <Email>Testning@test.se</Email>
+        <www>Utbildning2.se</www>
+        <VATRegNo>SE599387649801</VATRegNo>
+        <RegistredOffice>Växjö</RegistredOffice>
+        <Bank xsi:nil="true" />
+        <BankIdentificationCode xsi:nil="true" />
+        <IBAN xsi:nil="true" />
+        <BankCountryCode xsi:nil="true" />
+        <BankId xsi:nil="true" />
+        <BankAddress xsi:nil="true" />
+        <BankAddress2 xsi:nil="true" />
+        <BankPostCode xsi:nil="true" />
+        <BankPostOffice xsi:nil="true" />
+      </SellerParty>
+      <BuyerParty>
+        <InvoiceAddress>
+          <Name>Visma Utbildning (TEST) 01</Name>
+          <Address1>Kungsvägen 77</Address1>
+          <Address2 xsi:nil="true" />
+          <VisitingAddress xsi:nil="true" />
+          <PostCode>35252</PostCode>
+          <PostOffice>Växjö</PostOffice>
+          <CountryCode>SE</CountryCode>
+          <Country xsi:nil="true" />
+          <Reference>TestVårRef</Reference>
+          <CompanyNo>5938033692</CompanyNo>
+          <EANLocationNo xsi:nil="true" />
+          <AlternativeBuyerId>n/a</AlternativeBuyerId>
+          <BankAccount xsi:nil="true" />
+          <PostAccount xsi:nil="true" />
+          <BankAccountNo xsi:nil="true" />
+          <Telephone xsi:nil="true" />
+          <Telephone2 xsi:nil="true" />
+          <Telephone3 xsi:nil="true" />
+          <Telefax xsi:nil="true" />
+          <Email>test@test.se</Email>
+          <www xsi:nil="true" />
+          <VATRegNo>SE593803369201</VATRegNo>
+          <RegistredOffice xsi:nil="true" />
+          <BankId xsi:nil="true" />
+        </InvoiceAddress>
+        <DeliveryAddress>
+          <Name xsi:nil="true" />
+          <Address1 xsi:nil="true" />
+          <Address2 xsi:nil="true" />
+          <VisitingAddress xsi:nil="true" />
+          <PostCode xsi:nil="true" />
+          <PostOffice xsi:nil="true" />
+          <CountryCode xsi:nil="true" />
+          <Country xsi:nil="true" />
+          <EANLocationNo xsi:nil="true" />
+          <Telephone xsi:nil="true" />
+          <Telephone2 xsi:nil="true" />
+          <Telephone3 xsi:nil="true" />
+          <Telefax xsi:nil="true" />
+        </DeliveryAddress>
+      </BuyerParty>
+    </Header>
+    <Detail>
+      <ArticleRow>
+        <LineNo>1</LineNo>
+        <SellerArticleNo>100</SellerArticleNo>
+        <BuyerArticleNo xsi:nil="true" />
+        <AlternativeArticleNo xsi:nil="true" />
+        <ArticleDescription>Låda Krut</ArticleDescription>
+        <AlternativeDescription xsi:nil="true" />
+        <QuantityOrdered>1</QuantityOrdered>
+        <Unit Code="PCE">St</Unit>
+        <UnitPrice>3000.00</UnitPrice>
+        <SumOfLineExcDiscAndVAT>3000.00</SumOfLineExcDiscAndVAT>
+        <TotalLineDiscountAmount>0</TotalLineDiscountAmount>
+        <TotalLineDiscountPercent>0</TotalLineDiscountPercent>
+        <DiscountAmountPerUnit>0</DiscountAmountPerUnit>
+        <UnitPriceDiscDeducted>3000.00</UnitPriceDiscDeducted>
+        <SumOfLine>3000.00</SumOfLine>
+        <VATPercentage>25.00</VATPercentage>
+        <VATAmount>750.00</VATAmount>
+        <SumOfLineInclVAT>3750.00</SumOfLineInclVAT>
+        <QuantityDelivered>1</QuantityDelivered>
+        <QuantityRemainder>0</QuantityRemainder>
+        <DateRemainder xsi:nil="true" />
+        <SellerOrderNo xsi:nil="true" />
+        <BuyerOrderNo xsi:nil="true" />
+        <BuyerOrderLineNo xsi:nil="true" />
+        <SerialNo xsi:nil="true" />
+        <BatchNo xsi:nil="true" />
+        <DeliveryNoteNo xsi:nil="true" />
+        <BestBeforeDate xsi:nil="true" />
+        <DeliveryDate>2018-05-07</DeliveryDate>
+        <EstimatedShipmentDate xsi:nil="true" />
+        <ShipmentDate xsi:nil="true" />
+        <CountryOfOriginCode xsi:nil="true" />
+        <CountryOfOrigin xsi:nil="true" />
+      </ArticleRow>
+      <ArticleRow>
+        <LineNo>2</LineNo>
+        <SellerArticleNo xsi:nil="true" />
+        <BuyerArticleNo xsi:nil="true" />
+        <AlternativeArticleNo xsi:nil="true" />
+        <ArticleDescription>hlkjhkhjfiuo</ArticleDescription>
+        <AlternativeDescription xsi:nil="true" />
+        <QuantityOrdered>1</QuantityOrdered>
+        <Unit Code="PCE">St</Unit>
+        <UnitPrice>60.00</UnitPrice>
+        <SumOfLineExcDiscAndVAT>60.00</SumOfLineExcDiscAndVAT>
+        <TotalLineDiscountAmount>0</TotalLineDiscountAmount>
+        <TotalLineDiscountPercent>0</TotalLineDiscountPercent>
+        <DiscountAmountPerUnit>0</DiscountAmountPerUnit>
+        <UnitPriceDiscDeducted>60.00</UnitPriceDiscDeducted>
+        <SumOfLine>60.00</SumOfLine>
+        <VATPercentage>25.00</VATPercentage>
+        <VATAmount>15.00</VATAmount>
+        <SumOfLineInclVAT>75.00</SumOfLineInclVAT>
+        <QuantityDelivered>1</QuantityDelivered>
+        <QuantityRemainder>0</QuantityRemainder>
+        <DateRemainder xsi:nil="true" />
+        <SellerOrderNo xsi:nil="true" />
+        <BuyerOrderNo xsi:nil="true" />
+        <BuyerOrderLineNo xsi:nil="true" />
+        <SerialNo xsi:nil="true" />
+        <BatchNo xsi:nil="true" />
+        <DeliveryNoteNo xsi:nil="true" />
+        <BestBeforeDate xsi:nil="true" />
+        <DeliveryDate>2018-05-07</DeliveryDate>
+        <EstimatedShipmentDate xsi:nil="true" />
+        <ShipmentDate xsi:nil="true" />
+        <CountryOfOriginCode xsi:nil="true" />
+        <CountryOfOrigin xsi:nil="true" />
+      </ArticleRow>
+      <InfoRow>
+        <LineNo>3</LineNo>
+        <LineNoReference xsi:nil="true" />
+        <Text>jhgihliygö</Text>
+        <SellerOrderNo xsi:nil="true" />
+        <BuyerOrderNo xsi:nil="true" />
+        <BuyerOrderLineNo xsi:nil="true" />
+        <DeliveryNoteNo xsi:nil="true" />
+      </InfoRow>
+      <InfoRow>
+        <LineNo>4</LineNo>
+        <LineNoReference xsi:nil="true" />
+        <Text>Betalningsreferens: 1000000000000000001112258</Text>
+        <SellerOrderNo xsi:nil="true" />
+        <BuyerOrderNo xsi:nil="true" />
+        <BuyerOrderLineNo xsi:nil="true" />
+        <DeliveryNoteNo xsi:nil="true" />
+      </InfoRow>
+    </Detail>
+    <Summary>
+      <Currency>
+        <CurrencyCode>SEK</CurrencyCode>
+        <ExchangeRate>1</ExchangeRate>
+        <ExchangeRateDate xsi:nil="true" />
+        <RateEntity>1</RateEntity>
+        <CurrencyCodeAC>SEK</CurrencyCodeAC>
+        <ExchangeRateAC>1</ExchangeRateAC>
+        <RateEntityAC>1</RateEntityAC>
+      </Currency>
+      <VAT>
+        <VATSpecification>
+          <VATPercentage>25.00</VATPercentage>
+          <VATAmount>765.00</VATAmount>
+          <VATBasisAmount>3060.00</VATBasisAmount>
+          <VATAmountAC>765.00</VATAmountAC>
+          <VATBasisAmountAC>3060.00</VATBasisAmountAC>
+        </VATSpecification>
+      </VAT>
+      <NoOfLines>3</NoOfLines>
+      <SumOfLines>3060.00</SumOfLines>
+      <InvoiceDiscountPerc>0</InvoiceDiscountPerc>
+      <InvoiceDiscountAmount>0</InvoiceDiscountAmount>
+      <Net>3060.00</Net>
+      <Freight>0</Freight>
+      <HandlingCharge>0</HandlingCharge>
+      <SumOfQuantity>2</SumOfQuantity>
+      <TotalAmountExclVAT>3060.00</TotalAmountExclVAT>
+      <VATAmount>765.00</VATAmount>
+      <VATAmountAC xsi:nil="true" />
+      <TotalAmountNotRounded>3825.00</TotalAmountNotRounded>
+      <RoundingAmount>0</RoundingAmount>
+      <TotalAmount>3825.00</TotalAmount>
+      <TotalAmountCheckSum xsi:nil="true" />
+    </Summary>
+  </Invoice>
+</S-EDI>
