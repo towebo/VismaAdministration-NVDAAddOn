@@ -1,4 +1,4 @@
-WindowClassName	windowControlID	Module	Text	Comment
+WindowClassName	windowControlID 	Module	Text	Comment
 SafGrid	7407	spcsadm	Företagslista	
 SafGrid	7407	spcsfor	Föreningslista	
 SafGrid	21346	Offert	Offerter	
@@ -209,6 +209,7 @@ Edit	24825		Projekt
 Edit	23197		Kreditgräns	
 Edit	23193		Språk	
 Edit	23192		Valuta	
+Edit	26598		Kundfordranskonto	
 Edit	23198		Betalningsvillkor	
 Edit	23207		Leveransvillkor	
 Edit	23208		Leveranssätt	
