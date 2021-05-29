@@ -332,3 +332,21 @@ Edit	23254		Projekt
 Edit	23243		Valuta	
 Edit	23244		Valutakurs	
 ComboBox	25019		Inställningar för egen kopia, utskriftsval	
+Edit	24695	Kontakter	Namn	
+Edit	24694	Kontakter	Signatur	
+Edit	24696	Kontakter	Titel	
+Edit	24697	Kontakter	Telefon	
+Edit	24698	Kontakter	Telefon 2	
+Edit	24699	Kontakter	Mobiltelefon	
+Edit	24700	Kontakter	E-post	
+Edit	24701	Kontakter	Kundnummer	
+Edit	24702	Kontakter	Leverantörsnummer	
+Edit	24703	Kontakter	Företagsnamn	
+Edit	24704	Kontakter	Postadress	
+Edit	24705	Kontakter	Postadress 2	
+Edit	24707	Kontakter	Besöksadress	
+Edit	24708	Kontakter	Postnummer	
+Edit	24709	Kontakter	Ort	
+Edit	24711	Kontakter	Landskod	
+Edit	24710	Kontakter	Land	
+Edit	24706	Kontakter	Anteckningar	
