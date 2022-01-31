@@ -350,3 +350,31 @@ Edit	24709	Kontakter	Ort
 Edit	24711	Kontakter	Landskod	
 Edit	24710	Kontakter	Land	
 Edit	24706	Kontakter	Anteckningar	
+Edit	22175	Kontoplan	Kontonummer	
+Edit	22176	Kontoplan	Benämning	
+ComboBox	22177	Kontoplan	Momsrapportkod	
+ComboBox	23591	Kontoplan	Kontotyp	
+Edit	22178	Kontoplan	SRU-kod	
+Edit	22180	Kontoplan	Automatfördelning	
+ComboBox	22179	Kontoplan	Debet/Kredit	
+Edit	24903	Kontoplan	Motkonto	
+ComboBox	22183	Kontoplan	Resultatenhet	
+Edit	22185	Kontoplan	Föreslå följande resultatenhet	
+ComboBox	22186	Kontoplan	Projekt	
+Edit	22188	Kontoplan	Föreslå följande projekt	
+ComboBox	22189	Kontoplan	Subkonto	
+Edit	22191	Kontoplan	Föreslå följande subkonto	
+ComboBox	22192	Kontoplan	Kvantitet	
+Edit	22194	Kontoplan	Föreslå följande kvantitet	
+Edit	22195	Kontoplan	Enhet för kvantitet	
+ComboBox	22196	Kontoplan	Transaktionsinfo	
+Edit	22198	Kontoplan	Föreslå följande transaktionsinfo	
+Edit	22301	Periodisering	Namn på periodiseringen	
+Edit	21164	Periodisering	Första periodiseringsdatum	
+Edit	21167	Periodisering	Delas på antal månader	
+ComboBox	22303	Periodisering	Verifikationsserie	
+Edit	22302	Periodisering	Verifikationstext	
+Edit	26470	Periodisering	Intäktskonto	
+Edit	24897	Periodisering	Periodiseringskonto	
+Edit	24894	Periodisering	Resultatenhet	
+Edit	24895	Periodisering	Projekt	

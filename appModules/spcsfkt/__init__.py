@@ -1,14 +1,20 @@
 ﻿import os
 import api
 import wx
+from ctypes import *
 import config
 import gui
 import appModuleHandler
 from NVDAObjects.UIA import UIA
 from NVDAObjects.window import Window
 import UIAHandler
-import wx
 import tones
+import winUser
+import winKernel
+import watchdog
+from NVDAObjects.IAccessible import IAccessible, ContentGenericClient
+import oleacc
+import speech
 
 import controlTypes
 import ui
@@ -49,6 +55,20 @@ MODULE_ACCOUNTPLAN = "Kontoplan"
 MODULE_DISCOUNTAGREEMENTS = "Kundrabatter"
 MODULE_MEMBERS = "Medlemmar"
 
+# https://www.pinvoke.net/default.aspx/Constants.TCM_
+TCM_FIRST = 0x1300
+TCM_GETITEMA = TCM_FIRST + 5
+TCM_GETITEMW = TCM_FIRST + 60
+TCM_GETCURSEL = TCM_FIRST + 11
+
+
+TCIF_TEXT = 0x0001
+TCIF_IMAGE = 0x0002
+TCIF_RTLREADING = 0x0004
+TCIF_PARAM = 0x0008
+TCIF_STATE = 0x0010
+
+
 # For convenience.
 ExtraUIAEvents = {
 #    UIAHandler.UIA_AutomationFocusChangedEventId: "UIA_AutomationFocusChanged",
@@ -63,6 +83,17 @@ with open(fn, 'r') as f:
     ctrllines = f.read().splitlines()
     
 
+class TCITEMWStruct(Structure):
+    _fields_=[
+        ("mask", wintypes.UINT),
+        ('state', wintypes.DWORD),
+        ('stateMask', wintypes.DWORD),
+        ('text', wintypes.LPWSTR),
+        ('textMax', wintypes.INT),
+        ('image', wintypes.INT),
+        ('lParam', wintypes.LPARAM),
+    ]
+
 
 class AppModule(appModuleHandler.AppModule):
 
@@ -70,12 +101,10 @@ class AppModule(appModuleHandler.AppModule):
         super(AppModule, self).__init__(*args, **kwargs)
         # Add a series of events instead of doing it one at a time.
         # Some events are only available in a specific build range and/or while a specific version of IUIAutomation interface is in use.
-        #log.debug("SpcsAdm: adding additional events")
         for event, name in ExtraUIAEvents.items():
             if event not in UIAHandler.UIAEventIdsToNVDAEventNames:
                 UIAHandler.UIAEventIdsToNVDAEventNames[event] = name
                 UIAHandler.handler.clientObject.addAutomationEventHandler(event,UIAHandler.handler.rootElement,UIAHandler.TreeScope_Subtree,UIAHandler.handler.baseCacheRequest,UIAHandler.handler)
-                #log.debug("SpcsAdm: added event ID %s, assigned to %s"%(event, name))
                 
         confspec = {
             'debugMode': 'boolean(default=false)',
@@ -88,7 +117,6 @@ class AppModule(appModuleHandler.AppModule):
     def event_NVDAObject_init(self, obj):
         if not isinstance(obj, Window):
             pass
-        
         txt = self.getControlName(obj)
         if txt != None:
             obj.name = txt
@@ -104,6 +132,12 @@ class AppModule(appModuleHandler.AppModule):
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
         if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
             clsList.insert(0, VismaSafGrid)
+        elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_DIALOG:
+            clsList.insert(0, AdminSystemDialog)
+        elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_PAGETABLIST:
+            clsList.insert(0, AdminTabControl)
+        #ui.message("Namn %s" % (obj.name))
+            
 
     def script_readControlInfo(self, obj):
         wnd = api.getFocusObject()
@@ -300,6 +334,8 @@ class VismaSafGrid(UIA):
                     if self.windowControlID == 7407:
                         if coltxt == "Kol 0":
                             coltxt = U"Företag"
+                        elif coltxt == U"Företagsnamn":
+                            coltxt = ""
                         elif coltxt == "Kol 1":
                             coltxt = "Mapp"
                     # Aktiva kolumner i kolumnredigeringsdialogen
@@ -320,7 +356,11 @@ class VismaSafGrid(UIA):
                     punk=selement.getCurrentPattern(UIAHandler.UIA_ValuePatternId)
                     if punk:
                         valpat =punk.QueryInterface(UIAHandler.IUIAutomationValuePattern)
-                        valtxt = valpat.CurrentValue;
+                        if valpat:
+                            try:
+                                valtxt = valpat.CurrentValue;
+                            except:
+                                valtxt = ""
                         if ischeckbox:
                             if valtxt == "1":
                                 valtxt = "Ja"
@@ -330,6 +370,7 @@ class VismaSafGrid(UIA):
                                 valtxt = ""
                                 coltxt = ""
                     ui.message("%s, %s" % (coltxt, valtxt))
+                    
             # A grid that selects each cell
             else:
                 cursel = selpat.GetCurrentSelection()
@@ -344,7 +385,11 @@ class VismaSafGrid(UIA):
                     punk = selement .getCurrentPattern(UIAHandler.UIA_ValuePatternId)
                     if punk:
                         valpat =punk.QueryInterface(UIAHandler.IUIAutomationValuePattern)
-                        valtxt = valpat.CurrentValue;
+                        try:
+                            valtxt = valpat.CurrentValue;
+                        except:
+                            valtxt = ""
+
                         if ischeckbox:
                             if valtxt == "1":
                                 valtxt = "Ja"
@@ -383,4 +428,70 @@ class VismaAdministrationSettingsPanel(gui.SettingsPanel):
     def onSave(self):
         config.conf['VismaAdministration']['debugMode'] = self.debugModeCB.GetValue()
         config.conf['VismaAdministration']['sayNumGridRows'] = self.sayNumGridRowsCB.GetValue()
+
+class AdminTabControl(IAccessible):
+
+    def initOverlayClass(self):
+        speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+
+    def event_gainFocus(self):
+        try:
+            # Ensure the selected tab text is spoken instead of 'Fliksidor'
+            self.name = self.get_tab_text(-1)
+            speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+        except Exception as e:
+            ui.message("Fel: %s" % e)
+        
+    def _get_name(self):
+        return self.get_tab_text(-1)
+    
+    def _get_value(self):
+        return None
+
+    def _get_roleText(self):
+        return " " # Skip the announcement of 'Flikar'
+
+    def get_tab_text(self,idx):
+        tabidx = idx
+        if idx == -1:
+            tabidx = watchdog.cancellableSendMessage(self.windowHandle, TCM_GETCURSEL, 0, 0)
+        bufLen = 256
+        info = TCITEMWStruct()
+        info.mask = TCIF_TEXT
+        info.textMax = bufLen - 1
+        
+        processHandle = self.processHandle
+        internalBuf = winKernel.virtualAllocEx(processHandle, None, bufLen, winKernel.MEM_COMMIT, winKernel.PAGE_READWRITE)
+        try:
+            info.text = internalBuf
+            internalInfo = winKernel.virtualAllocEx(processHandle, None, sizeof(info), winKernel.MEM_COMMIT, winKernel.PAGE_READWRITE)
+            try:
+                winKernel.writeProcessMemory(processHandle, internalInfo, byref(info), sizeof(info), None)
+                got_it = watchdog.cancellableSendMessage(self.windowHandle, TCM_GETITEMW, tabidx, internalInfo)
+            finally:
+                winKernel.virtualFreeEx(processHandle, internalInfo, 0, winKernel.MEM_RELEASE)
+            buf = create_unicode_buffer(bufLen)
+            winKernel.readProcessMemory(processHandle, internalBuf, buf, bufLen, None)
+        finally:
+            winKernel.virtualFreeEx(processHandle, internalBuf, 0, winKernel.MEM_RELEASE)
+        if got_it:
+            text = buf.value
+            return text
+        return "Flik %d markerad" % (tabidx + 1)
+            
+class AdminSystemDialog(IAccessible):
+
+    def _get_name(self):
+        return None
+    
+    def _get_value(self):
+        return None
+
+    def _get_roleText(self):
+        return " "
+
+    def _get_description(self):
+        # Skip the announcement of all controls on the dialog page
+        return None 
+
 
