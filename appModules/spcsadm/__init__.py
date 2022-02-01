@@ -130,18 +130,27 @@ class AppModule(appModuleHandler.AppModule):
 
             
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
-        if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
-            clsList.insert(0, VismaSafGrid)
-        elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_DIALOG:
-            clsList.insert(0, AdminSystemDialog)
-        elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_PAGETABLIST:
-            clsList.insert(0, AdminTabControl)
-        #ui.message("Namn %s" % (obj.name))
+        try:
+            if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
+                clsList.insert(0, VismaSafGrid)
+            elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_DIALOG:
+                clsList.insert(0, AdminSystemDialog)
+            elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_PAGETABLIST:
+                clsList.insert(0, AdminTabControl)
+            elif isinstance(obj, IAccessible) and obj.windowClassName.startswith("BCGPControlBar") and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_CLIENT:
+                clsList.insert(0, AdminControlBar)
+        except Exception as e:
+            ui.message("Fel: %s" % e)
             
 
+            
+        
     def script_readControlInfo(self, obj):
         wnd = api.getFocusObject()
         module = self.getCurrentVismaModule(wnd)
+        
+        #wnd = wnd.parent.parent.parent.parent.parent.parent.parent.parent.parent
+        
         txt = "Name: %s, WindowControlID: %d, WindowClassName: %s, VismaModule: %s" % ( wnd.name, wnd.windowControlID, wnd.windowClassName, module )
         ui.message(txt)
 
@@ -156,7 +165,7 @@ class AppModule(appModuleHandler.AppModule):
                 wnd = wnd.parent
                 if wnd is None:
                     return self.appName
-                log.debug("%s, %s, %d" % ( wnd.windowClassName, wnd.windowText, wnd.windowControlID ))
+                #log.debug("%s, %s, %d" % ( wnd.windowClassName, wnd.windowText, wnd.windowControlID ))
                 #ui.message(wnd.windowClassName)
             wndtxt = wnd.windowText.lower()
             if wndtxt.startswith('order'):
@@ -477,8 +486,8 @@ class AdminTabControl(IAccessible):
         if got_it:
             text = buf.value
             return text
-        return "Flik %d markerad" % (tabidx + 1)
-            
+        return None            
+
 class AdminSystemDialog(IAccessible):
 
     def _get_name(self):
@@ -495,3 +504,27 @@ class AdminSystemDialog(IAccessible):
         return None 
 
 
+class AdminControlBar(IAccessible):
+
+    def initOverlayClass(self):
+        try:
+            speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+            if self.value is None:
+                return
+            btn = self.simpleFirstChild
+            if btn is None:
+                return
+            while btn is not None and btn.IAccessibleRole != oleacc.ROLE_SYSTEM_PUSHBUTTON:
+                btn = btn.simpleNext
+            if btn is not None:
+                api.moveMouseToNVDAObject(btn)
+        except Exception as e:
+            ui.message("Fel: %s" % e)
+    
+    def _get_name(self):
+        return None
+
+    def _get_description(self):
+        return None
+
+    
