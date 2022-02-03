@@ -97,6 +97,8 @@ class TCITEMWStruct(Structure):
 
 class AppModule(appModuleHandler.AppModule):
 
+    last_module = None
+
     def __init__(self, *args, **kwargs):
         super(AppModule, self).__init__(*args, **kwargs)
         # Add a series of events instead of doing it one at a time.
@@ -117,7 +119,12 @@ class AppModule(appModuleHandler.AppModule):
     def event_NVDAObject_init(self, obj):
         if not isinstance(obj, Window):
             pass
+        last_module = self.getCurrentVismaModule(obj)
         txt = self.getControlName(obj)
+
+        #ui.message("%d, %s" % (last_module, obj.windowControlID))
+
+
         if txt != None:
             obj.name = txt
         else:
@@ -165,67 +172,73 @@ class AppModule(appModuleHandler.AppModule):
                 wnd = wnd.parent
                 if wnd is None:
                     return self.appName
+                if wnd.windowClassName == "#32770" and wnd.windowText == "Massuppdatering":
+                    return self.last_module
                 #log.debug("%s, %s, %d" % ( wnd.windowClassName, wnd.windowText, wnd.windowControlID ))
                 #ui.message(wnd.windowClassName)
+            module = None
             wndtxt = wnd.windowText.lower()
             if wndtxt.startswith('order'):
-                return MODULE_ORDER
+                module = MODULE_ORDER
             elif wndtxt.startswith('kundfakt'):
-                return MODULE_INVOICE
+                module = MODULE_INVOICE
             elif wndtxt.startswith('offerter'):
-                return MODULE_OFFER
+                module = MODULE_OFFER
             elif wndtxt.startswith('kunder'):
-                return MODULE_CUSTOMER
+                module = MODULE_CUSTOMER
             elif wndtxt.startswith('leverantörer'):
-                return MODULE_SUPPLIER
+                module = MODULE_SUPPLIER
             elif wndtxt.startswith('artiklar'):
-                return MODULE_ARTICLE
+                module = MODULE_ARTICLE
             elif wndtxt.startswith('beställningar'):
-                return MODULE_BOOKINGS
+                module = MODULE_BOOKINGS
             elif wndtxt.startswith('inkommande följ'):
-                return MODULE_DELIVERYNOTE
+                module = MODULE_DELIVERYNOTE
             elif wndtxt.startswith('leverantörsfakturor'):
-                return MODULE_SUPPLIERINVOICE
+                module = MODULE_SUPPLIERINVOICE
             elif wndtxt.startswith('kontakter'):
-                return MODULE_CONTACTS
+                module = MODULE_CONTACTS
             elif wndtxt.startswith('avtalsmall'):
-                return MODULE_AGREEMENT_TEMPLATE
+                module = MODULE_AGREEMENT_TEMPLATE
             elif wndtxt.startswith('avtal'):
-                return MODULE_AGREEMENT
+                module = MODULE_AGREEMENT
             elif wndtxt.startswith('försäljningsprislis'):
-                return MODULE_PRICELIST
+                module = MODULE_PRICELIST
             elif wndtxt.startswith('manuella inleveranser'):
-                return MODULE_MANUALDELIVERYIN
+                module = MODULE_MANUALDELIVERYIN
             elif wndtxt.startswith('manuella utleveranser'):
-                return MODULE_MANUALDELIVERYOUT
+                module = MODULE_MANUALDELIVERYOUT
             elif wndtxt.startswith('inventering'):
-                return MODULE_INVENTORY
+                module = MODULE_INVENTORY
             elif wndtxt.startswith('prisinläsning'):
-                return MODULE_PRICEIMPORT
+                module = MODULE_PRICEIMPORT
             elif wndtxt.startswith('prisomräkning kalkyl'):
-                return MODULE_PRICERECALCULATION_ESTIMATEDPRICES
+                module = MODULE_PRICERECALCULATION_ESTIMATEDPRICES
             elif wndtxt.startswith('prisomräkning lev'):
-                return MODULE_PRICERECALCULATION_SUPPLIERPRICES
+                module = MODULE_PRICERECALCULATION_SUPPLIERPRICES
             elif wndtxt.startswith('ingående balans'):
-                return MODULE_INGOINGBALLANCE
+                module = MODULE_INGOINGBALLANCE
             elif wndtxt.startswith('verifikationer'):
-                return MODULE_VERIFICATIONS
+                module = MODULE_VERIFICATIONS
             elif wndtxt.startswith('resultatbudg'):
-                return MODULE_RESULTBUDGET
+                module = MODULE_RESULTBUDGET
             elif wndtxt.startswith('resultatprognos'):
-                return MODULE_RESULTPROGNOZE
+                module = MODULE_RESULTPROGNOZE
             elif wndtxt.startswith('balansbudget'):
-                return MODULE_BALLANCEBUDGET
+                module = MODULE_BALLANCEBUDGET
             elif wndtxt.startswith('balansprognos'):
-                return MODULE_BALLANCEPROGNOZE
+                module = MODULE_BALLANCEPROGNOZE
             elif wndtxt.startswith('kontoplan'):
-                return MODULE_ACCOUNTPLAN
+                module = MODULE_ACCOUNTPLAN
             elif wndtxt.startswith('kundrabatter'):
-                return MODULE_DISCOUNTAGREEMENTS
+                module = MODULE_DISCOUNTAGREEMENTS
             elif wndtxt.startswith('medlemmar'):
-                return MODULE_MEMBERS
+                module = MODULE_MEMBERS
+            else:
+                module = "Fönstertext " + wndtxt
 
-            return "Fönstertext " + wndtxt
+            self.last_module = module
+            return module
         except Exception as e:
             ui.message("Fel: %s" % e)
 
@@ -241,6 +254,7 @@ class AppModule(appModuleHandler.AppModule):
                 return None
             elif len(idlines) >= 2:
                 module = self.getCurrentVismaModule(obj)
+                #module = self.last_module
                 idlines = [k for k in idlines if module in k]
                 if len(idlines) == 0:
                     return None

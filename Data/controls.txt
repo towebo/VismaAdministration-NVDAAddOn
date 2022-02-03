@@ -378,3 +378,74 @@ Edit	26470	Periodisering	Intäktskonto
 Edit	24897	Periodisering	Periodiseringskonto	
 Edit	24894	Periodisering	Resultatenhet	
 Edit	24895	Periodisering	Projekt	
+Button	25052	Kunder	Lås upp Inaktivera	
+Button	23978	Kunder	Lås upp Landskod	
+Button	23983	Kunder	Lås upp Landskod leveransadress	
+Button	23868	Kunder	Lås upp Kundkategori	
+Button	23869	Kunder	Lås upp Distrikt	
+Button	23870	Kunder	Lås upp Säljare	
+Button	23873	Kunder	Lås up Leveranssätt	
+Button	23874	Kunder	Lås upp Speditör	
+Button	23875	Kunder	Lås upp Språk	
+Button	23876	Kunder	Lås upp Valuta	
+Button	23877	Kunder	Lås upp Sorteringsbegrepp	
+Button	23878	Kunder	Lås upp Kreditgräns kronor	
+Button	23879	Kunder	Lås upp Export	
+Button	23880	Kunder	Lås upp EU-kund	
+Button	23881	Kunder	Lås upp Räntefakturering	
+Button	23882	Kunder	Lås upp Betalningspåminnelse	
+Button	23883	Kunder	Lås upp Påminnelseavgift	
+Button	23884	Kunder	Lås upp Restnotera ej	
+Button	23885	Kunder	Lås upp Expeditionsavgift	
+Button	23886	Kunder	Lås upp Frakt	
+Button	26659	Kunder	Lås upp Intrastat	
+Button	23887	Kunder	Lås upp Samlingsfakturering	
+Button	24123	Kunder	Lås upp Överför adress till beställning	
+Button	26202	Kunder	Lås upp Anmärkning 1	
+Button	26203	Kunder	Lås upp Anmärkning 2	
+Button	23888	Kunder	Lås upp Rabattavtal	
+Button	23871	Kunder	Lås upp Betalningsvillkor	
+Button	23872	Kunder	Lås upp Leveransvillkor	
+Button	24088	Kunder	Lås upp Kundfordranskonto	
+Button	23889	Kunder	Lås upp Prislista	
+Button	23890	Kunder	Lås upp Fakturarabatt i %	
+Button	23891	Kunder	Lås upp Radrabatt	
+Button	24873	Kunder	Lås upp Offert	
+Button	24874	Kunder	Lås upp Order	
+Button	24875	Kunder	Lås upp Följesedel	
+Button	24876	Kunder	Lås upp Extra orderdokument	
+Button	24877	Kunder	Lås upp Faktura	
+Button	24878	Kunder	Lås upp Extra fakturadokument	
+Button	24879	Kunder	Lås upp Betalningspåminnelse	
+Button	24089	Kunder	Lås upp Utskriftsval Offert	
+Button	23892	Kunder	Lås upp Utskriftsval Order	
+Button	24095	Kunder	Lås upp Utskriftsval Följesedel	
+Button	24174	Kunder	Lås upp Utskriftsval Extra orderdokument	
+Button	23893	Kunder	Lås upp Utskriftsval Faktura	
+Button	23894	Kunder	Lås upp Utskriftsval Kreditfaktura	
+Button	23895	Kunder	Lås upp Utskriftsval Räntefaktura	
+Button	23984	Kunder	Lås upp Utskriftsval Kontantnota	
+Button	23985	Kunder	Lås upp Utskriftsval Extra fakturadokument	
+Button	24090	Kunder	Lås upp Kopia Offert	
+Edit	25007	Kunder	Kopia Offert	
+Button	23988	Kunder	Lås upp Kopia Order	
+Edit	24038	Kunder	Kopia Order	
+Button	23987	Kunder	Lås upp Kopia Följesedel	
+Edit	25003	Kunder	Kopia Följesedel	
+Button	24085	Kunder	Lås upp Kopia Extra orderdokument	
+Edit	25004	Kunder	Kopia Extra orderdokument	
+Button	23989	Kunder	Lås upp Kopia Faktura	
+Edit	24032	Kunder	Kopia Faktura	
+Button	23990	Kunder	Lås upp Kopia Kreditfaktura	
+Edit	24034	Kunder	Kopia Kreditfaktura	
+Button	23991	Kunder	Lås upp Kopia Räntefaktura	
+Edit	24036	Kunder	Kopia Räntefaktura	
+Button	24086	Kunder	Lås upp Kopia Kontantnota	
+Edit	25005	Kunder	Kopia Kontantnota	
+Button	24087	Kunder	Lås upp Kopia Extra fakturadokument	
+Edit	25006	Kunder	Kopia Extra fakturadokument	
+Button	23986	Kunder	Lås upp Dokumentmall Faktura	
+Button	24092	Kunder	Lås upp Dokumentmall Kreditfaktura	
+Button	24093	Kunder	Lås upp Dokumentmall Räntefaktura	
+Button	24094	Kunder	Lås upp Dokumentmall Kontantnota	
+Button	23896	Kunder	Lås upp Dokumentmall Extra fakturadokument	
