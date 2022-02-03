@@ -147,7 +147,7 @@ class AppModule(appModuleHandler.AppModule):
             elif isinstance(obj, IAccessible) and obj.windowClassName.startswith("BCGPControlBar") and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_CLIENT:
                 clsList.insert(0, AdminControlBar)
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
             
 
             
@@ -240,7 +240,7 @@ class AppModule(appModuleHandler.AppModule):
             self.last_module = module
             return module
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i getCurrentVismaModule: %s" % e)
 
 
     def getControlName(self, obj):
@@ -252,16 +252,23 @@ class AppModule(appModuleHandler.AppModule):
             idlines = [k for k in wndclasslines if ("%d" % obj.windowControlID) in k]
             if len(idlines) == 0:
                 return None
-            elif len(idlines) >= 2:
+            elif len(idlines) == 1:
+                lineparts = idlines[0].split('\t')
+                ctrl_module = lineparts[2]
+                if ctrl_module == None:
+                    return lineparts[3]
                 module = self.getCurrentVismaModule(obj)
-                #module = self.last_module
+                if ctrl_module != module:
+                    return None
+            else:
+                module = self.getCurrentVismaModule(obj)
                 idlines = [k for k in idlines if module in k]
                 if len(idlines) == 0:
                     return None
             lineparts = idlines[0].split('\t')
             return lineparts[3]
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i getControlName: %s" % e)
 
 
     def doReadVismaCommands(self):
@@ -293,7 +300,7 @@ class AppModule(appModuleHandler.AppModule):
                     ui.message(txt)
 
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i doReadVismaCommands: %s" % e)
 
 
     def script_readVismaCommands(self, gesture):
@@ -317,7 +324,7 @@ class VismaSafGrid(UIA):
             #ui.message("Rad %d är markerad" % self._get_rowNumber())
             self.ReadGridSelection()
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i VismaSafGrid.gainFocus: %s" % e)
     
     def event_UIA_selectionInvalidated(self):
         self.ReadGridSelection()
@@ -421,7 +428,7 @@ class VismaSafGrid(UIA):
 
                     ui.message("%s, %s" % (coltxt, valtxt))
         except Exception as e:
-            ui.message("Fel: %s"%e)
+            ui.message("Fel i readGridSelection: %s"%e)
             
     
     __gestures = {
@@ -463,7 +470,7 @@ class AdminTabControl(IAccessible):
             self.name = self.get_tab_text(-1)
             speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i VismaTabControl.gainFocus: %s" % e)
         
     def _get_name(self):
         return self.get_tab_text(-1)
@@ -533,7 +540,7 @@ class AdminControlBar(IAccessible):
             if btn is not None:
                 api.moveMouseToNVDAObject(btn)
         except Exception as e:
-            ui.message("Fel: %s" % e)
+            ui.message("Fel i AdminControlBar.initOverlayClass: %s" % e)
     
     def _get_name(self):
         return None
