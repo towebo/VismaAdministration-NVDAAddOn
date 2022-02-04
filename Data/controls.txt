@@ -449,3 +449,7 @@ Button	24092	Kunder	Lås upp Dokumentmall Kreditfaktura
 Button	24093	Kunder	Lås upp Dokumentmall Räntefaktura	
 Button	24094	Kunder	Lås upp Dokumentmall Kontantnota	
 Button	23896	Kunder	Lås upp Dokumentmall Extra fakturadokument	
+Edit	22248	Verifikationer	Datum	
+Edit	22251	Verifikationer	Verifikationstext	
+SafGrid	20743	Verifikationer	Verifikationsrader	
+SafGrid	20723	Verifikationer	Verifikationslista	

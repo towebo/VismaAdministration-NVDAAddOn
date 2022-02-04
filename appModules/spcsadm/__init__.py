@@ -100,7 +100,7 @@ class TCITEMWStruct(Structure):
 
 class AppModule(appModuleHandler.AppModule):
 
-    last_module = None
+    last_module = ""
 
     def __init__(self, *args, **kwargs):
         super(AppModule, self).__init__(*args, **kwargs)
@@ -122,8 +122,13 @@ class AppModule(appModuleHandler.AppModule):
     def event_NVDAObject_init(self, obj):
         if not isinstance(obj, Window):
             pass
-        self.last_module = self.getCurrentVismaModule(obj)
+        module = self.getCurrentVismaModule(obj)
+        # Only store the module if it's something else than the app so it's useful.
+        if module != obj.appModule.appName:
+            self.last_module = module
         txt = self.getControlName(obj, self.last_module)
+        if txt is None or txt =="":
+            txt = self.getControlName(obj, module)
 
         if txt != None:
             obj.name = txt
@@ -268,7 +273,7 @@ class AppModule(appModuleHandler.AppModule):
             wndclasslines = [k for k in ctrllines if obj.windowClassName in k]
             if len(wndclasslines) == 0:
                 return None
-            idlines = [k for k in wndclasslines if ("%d" % obj.windowControlID) in k]
+            idlines = [k for k in wndclasslines if ("\t%d\t" % obj.windowControlID) in k]
             if len(idlines) == 0:
                 return None
             elif len(idlines) == 1:
