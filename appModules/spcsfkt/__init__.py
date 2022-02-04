@@ -78,10 +78,15 @@ ExtraUIAEvents = {
 }
 
 ctrllines = []
+module_lines = []
 
 fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\\\controls.txt"
 with open(fn, 'r') as f:
     ctrllines = f.read().splitlines()
+
+fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\\\modules.txt"
+with open(fn, 'r') as f:
+    module_lines = f.read().splitlines()
     
 
 last_tab_text = ""
@@ -201,65 +206,14 @@ class AppModule(appModuleHandler.AppModule):
                     return self.last_module
             module = None
             wndtxt = wnd.windowText.lower()
-            if wndtxt.startswith('order'):
-                module = MODULE_ORDER
-            elif wndtxt.startswith('kundfakt'):
-                module = MODULE_INVOICE
-            elif wndtxt.startswith('offerter'):
-                module = MODULE_OFFER
-            elif wndtxt.startswith('kunder'):
-                module = MODULE_CUSTOMER
-            elif wndtxt.startswith('leverantörer'):
-                module = MODULE_SUPPLIER
-            elif wndtxt.startswith('artiklar'):
-                module = MODULE_ARTICLE
-            elif wndtxt.startswith('beställningar'):
-                module = MODULE_BOOKINGS
-            elif wndtxt.startswith('inkommande följ'):
-                module = MODULE_DELIVERYNOTE
-            elif wndtxt.startswith('leverantörsfakturor'):
-                module = MODULE_SUPPLIERINVOICE
-            elif wndtxt.startswith('kontakter'):
-                module = MODULE_CONTACTS
-            elif wndtxt.startswith('avtalsmall'):
-                module = MODULE_AGREEMENT_TEMPLATE
-            elif wndtxt.startswith('avtal'):
-                module = MODULE_AGREEMENT
-            elif wndtxt.startswith('försäljningsprislis'):
-                module = MODULE_PRICELIST
-            elif wndtxt.startswith('manuella inleveranser'):
-                module = MODULE_MANUALDELIVERYIN
-            elif wndtxt.startswith('manuella utleveranser'):
-                module = MODULE_MANUALDELIVERYOUT
-            elif wndtxt.startswith('inventering'):
-                module = MODULE_INVENTORY
-            elif wndtxt.startswith('prisinläsning'):
-                module = MODULE_PRICEIMPORT
-            elif wndtxt.startswith('prisomräkning kalkyl'):
-                module = MODULE_PRICERECALCULATION_ESTIMATEDPRICES
-            elif wndtxt.startswith('prisomräkning lev'):
-                module = MODULE_PRICERECALCULATION_SUPPLIERPRICES
-            elif wndtxt.startswith('ingående balans'):
-                module = MODULE_INGOINGBALLANCE
-            elif wndtxt.startswith('verifikationer'):
-                module = MODULE_VERIFICATIONS
-            elif wndtxt.startswith('resultatbudg'):
-                module = MODULE_RESULTBUDGET
-            elif wndtxt.startswith('resultatprognos'):
-                module = MODULE_RESULTPROGNOZE
-            elif wndtxt.startswith('balansbudget'):
-                module = MODULE_BALLANCEBUDGET
-            elif wndtxt.startswith('balansprognos'):
-                module = MODULE_BALLANCEPROGNOZE
-            elif wndtxt.startswith('kontoplan'):
-                module = MODULE_ACCOUNTPLAN
-            elif wndtxt.startswith('kundrabatter'):
-                module = MODULE_DISCOUNTAGREEMENTS
-            elif wndtxt.startswith('medlemmar'):
-                module = MODULE_MEMBERS
-            else:
-                module = "Fönstertext " + wndtxt
 
+            
+            global module_lines
+            lines = [k for k in module_lines if ("%s\t" % wndtxt) in k]
+            if len(lines ) == 0:
+                return ""
+            lineparts = lines[0].split('\t')
+            module = lineparts[1]
             self.last_module = module
             return module
         except Exception as e:
