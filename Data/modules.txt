@@ -28,3 +28,8 @@ balansprognos	Balansprognos
 kontoplan	Kontoplan
 kundrabatter	Kundrabatter
 medlemmar	Medlemmar
+konteringsmallar	Konteringsmallar
+gamla journaler	Gamla journaler
+momskontroll	Momskontroll
+periodiseringar	Periodiseringar
+fakturahantering	Fakturahantering

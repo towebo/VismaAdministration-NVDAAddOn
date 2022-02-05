@@ -23,45 +23,11 @@ import tones
 from logHandler import log
 
 
-
-# Constants
-MODULE_OFFER = "Offert"
-MODULE_ORDER = "Order"
-MODULE_INVOICE = "Kundfaktura"
-MODULE_AGREEMENT_TEMPLATE = "Avtalsmall"
-MODULE_AGREEMENT = "Avtal"
-MODULE_ARTICLE = "Artiklar och tjänster"
-MODULE_CUSTOMER = "Kunder"
-MODULE_SUPPLIER = "Leverantörer"
-MODULE_GENERAL = "Allmän"
-MODULE_BOOKINGS = "Beställning"
-MODULE_DELIVERYNOTE = "Inkommande följesedel"
-MODULE_SUPPLIERINVOICE = "Leverantörsfaktura"
-MODULE_CONTACTS = "Kontakter"
-MODULE_PRICELIST = "Prislistor"
-MODULE_MANUALDELIVERYIN = "Manuell inleverans"
-MODULE_MANUALDELIVERYOUT = "Manuell utleverans"
-MODULE_INVENTORY = "Inventering"
-MODULE_PRICEIMPORT = "Prisinläsning"
-MODULE_PRICERECALCULATION_ESTIMATEDPRICES = "Prisomräkning kalkylpriser"
-MODULE_PRICERECALCULATION_SUPPLIERPRICES = "Prisomräkning leverantörspriser"
-MODULE_INGOINGBALLANCE = "Ingående balans"
-MODULE_VERIFICATIONS = "Verifikationer"
-
-MODULE_RESULTBUDGET= "Resultatbudget"
-MODULE_RESULTPROGNOZE = "Resultatprognos"
-MODULE_BALLANCEBUDGET = "Balansbudget"
-MODULE_BALLANCEPROGNOZE = "Balansprognos"
-MODULE_ACCOUNTPLAN = "Kontoplan"
-MODULE_DISCOUNTAGREEMENTS = "Kundrabatter"
-MODULE_MEMBERS = "Medlemmar"
-
-# https://www.pinvoke.net/default.aspx/Constants.TCM_
+ #https://www.pinvoke.net/default.aspx/Constants.TCM_
 TCM_FIRST = 0x1300
 TCM_GETITEMA = TCM_FIRST + 5
 TCM_GETITEMW = TCM_FIRST + 60
 TCM_GETCURSEL = TCM_FIRST + 11
-
 
 TCIF_TEXT = 0x0001
 TCIF_IMAGE = 0x0002
@@ -159,17 +125,12 @@ class AppModule(appModuleHandler.AppModule):
         except Exception as e:
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
             ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
-            
-
-            
+    
         
     def script_readControlInfo(self, obj):
         wnd = api.getFocusObject()
         module = self.getCurrentVismaModule(wnd)
         
-        #wnd = wnd.parent.parent.parent.parent.parent.parent.parent.parent.parent
-        
-        #txt = "Name: %s\t WindowControlID: %d\t WindowClassName: %s\t VismaModule: %s" % ( wnd.name, wnd.windowControlID, wnd.windowClassName, module )
         txt = "%s\t%d\t%s\t%s\t" % ( wnd.windowClassName, wnd.windowControlID, module,wnd.name )
 
         isSameScript = scriptHandler.getLastScriptRepeatCount()
@@ -177,7 +138,7 @@ class AppModule(appModuleHandler.AppModule):
             ui.message(txt)
         else:
             if api.copyToClip(txt):
-                ui.message("Kopierat till klippbordet")
+                ui.message("%s kopierat till klippbordet" % txt)
 
     def getCurrentVismaModule(self, ctrl):
         try:
@@ -186,32 +147,33 @@ class AppModule(appModuleHandler.AppModule):
                 wnd = api.getFocusObject()
             if wnd is None:
                 return self.appName
-            while wnd is not None and isinstance(wnd, Window) and not wnd.windowClassName.startswith('Afx:'):
+            wndtxt = wnd.windowText
+            while wnd is not None and isinstance(wnd, Window) and not wnd.windowClassName.startswith('Afx'):
                 try:
-                    #log.info("4, %s, %s" % (wnd.windowClassName, wnd.windowText))
                     wnd = wnd.parent
+                    if wnd is not None and wnd.windowText != "":
+                        wndtxt = wnd.windowText
+                    if wnd is not None and wnd.windowClassName == "#32770" and wnd.windowText == "Massuppdatering":
+                        return self.last_module
                 except Exception as e:
                     pass
                     #log.info("Fel i getCurrentVismaModule när wnd (%s, %d, %s) parent skulle hämtas: %s" % (wnd.windowClassName, wnd.windowControlID, wnd.name, e))
-                    #ui.message("Fel inträffade")
-                #log.info("4.2")
-                if wnd is None:
-                    try:
-                        return self.appName
-                    except Exception as e:
-                        #log.info("Fel i getCurrentVismaModule när self.appName skulle hämtas: %s" % e)
-                        #ui.message("Fel inträffade")
-                        return None
-                if wnd.windowClassName == "#32770" and wnd.windowText == "Massuppdatering":
-                    return self.last_module
-            module = None
-            wndtxt = wnd.windowText.lower()
-
+                #if wnd is None:
+                #    try:
+                #        return self.appName
+                #    except Exception as e:
+                #        #log.info("Fel i getCurrentVismaModule när self.appName skulle hämtas: %s" % e)
+                #        #ui.message("Fel inträffade")
+                #        return None
+                
+            module = wndtxt
+            wndtxt = wndtxt.lower()
             
             global module_lines
             lines = [k for k in module_lines if ("%s\t" % wndtxt) in k]
             if len(lines ) == 0:
-                return ""
+                log.info("Ny modul: %s" % module)
+                return module
             lineparts = lines[0].split('\t')
             module = lineparts[1]
             self.last_module = module

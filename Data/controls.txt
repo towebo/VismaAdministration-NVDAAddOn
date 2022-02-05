@@ -453,3 +453,17 @@ Edit	22248	Verifikationer	Datum
 Edit	22251	Verifikationer	Verifikationstext	
 SafGrid	20743	Verifikationer	Verifikationsrader	
 SafGrid	20723	Verifikationer	Verifikationslista	
+SafGrid	20723	Konteringsmallar	Konteringsmallar	
+Button	21147	Konteringsmallar	Plus	
+Button	21146	Konteringsmallar	Minus	
+Button	21148	Konteringsmallar	Multiplicera	
+Button	21149	Konteringsmallar	Dividera	
+Button	21150	Konteringsmallar	Vänster parentes	
+Button	21151	Konteringsmallar	Höger parentes	
+Button	23637	Konteringsmallar	Vänster klammer	
+Button	23638	Konteringsmallar	Höger klammer	
+SafGrid	20723	Gamla journaler	Journaler	
+Edit	22084	Momskontroll	Från och med	
+Edit	22085	Momskontroll	Till och med	
+SafGrid	24908	Periodiseringar	Lista över periodiseringar	
+SafGrid	21346	Fakturahantering	Fakturor	
