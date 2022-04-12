@@ -467,3 +467,25 @@ Edit	22084	Momskontroll	Från och med
 Edit	22085	Momskontroll	Till och med	
 SafGrid	24908	Periodiseringar	Lista över periodiseringar	
 SafGrid	21346	Fakturahantering	Fakturor	
+Edit	26662	Artiklar och tjänster	Transaktionstyp	
+SafGrid	21530	Artiklar och tjänster	Stafflingar	
+SafGrid	21521	Artiklar och tjänster	Priser	
+Edit	22206	Hämta projekt	Projektnummer	
+Edit	22207	Hämta projekt	Namn	
+Edit	22208	Hämta projekt	Projektet startar	
+Edit	22209	Hämta projekt	Projektet slutar	
+Edit	22212	Hämta projekt	Kundnummer	
+Edit	22213	Hämta projekt	Kundnamn	
+Edit	22215	Hämta projekt	Kundens ordernummer	
+Edit	22216	Hämta projekt	Kontaktperson	
+Edit	22217	Hämta projekt	Telefon	
+Edit	22218	Hämta projekt	Fax	
+Edit	22219	Hämta projekt	Arbetsplats	
+Edit	22220	Hämta projekt	Arbetsplats, fortsättning	
+Edit	22214	Hämta projekt	Vårt ordernummer	
+ComboBox	22225	Hämta projekt	Kontoplanstyp	
+Edit	22211	Hämta projekt	Ansvarig	
+Edit	22221	Hämta projekt	Anteckning 1	
+Edit	22222	Hämta projekt	Anteckning 2	
+Edit	22223	Hämta projekt	Anteckning 3	
+Edit	22224	Hämta projekt	Anteckning 4	

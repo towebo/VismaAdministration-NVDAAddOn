@@ -8,8 +8,6 @@ import appModuleHandler
 from NVDAObjects.UIA import UIA
 from NVDAObjects.window import Window
 import UIAHandler
-import tones
-import winUser
 import winKernel
 import watchdog
 from NVDAObjects.IAccessible import IAccessible, ContentGenericClient
@@ -117,11 +115,13 @@ class AppModule(appModuleHandler.AppModule):
             if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
                 clsList.insert(0, VismaSafGrid)
             elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_DIALOG:
-                clsList.insert(0, AdminSystemDialog)
+                clsList.insert(0, VismaSystemDialog)
             elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_PAGETABLIST:
-                clsList.insert(0, AdminTabControl)
+                clsList.insert(0, SysTabControl32)
             elif isinstance(obj, IAccessible) and obj.windowClassName.startswith("BCGPControlBar") and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_CLIENT:
-                clsList.insert(0, AdminControlBar)
+                clsList.insert(0, VismaControlBar)
+            elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_CHECKBUTTON:
+                clsList.insert(0, SystemCheckButton)
         except Exception as e:
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
             ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
@@ -253,6 +253,19 @@ class AppModule(appModuleHandler.AppModule):
 
 class VismaSafGrid(UIA):
 
+    __changeItemGestures = (
+        "kb:space",
+        )
+    
+    def initOverlayClass(self):
+        for gesture in self.__changeItemGestures:
+            self.bindGesture(gesture, "changeItem")
+
+
+    def script_changeItem(self,gesture):
+        gesture.send()
+        self.ReadGridSelection()
+
 
     def event_gainFocus(self):
         try:
@@ -294,6 +307,8 @@ class VismaSafGrid(UIA):
         
         
     def ReadGridSelection(self):
+        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej"]
+        
         try:
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
             #tablepat = nav._getUIAPattern(UIAHandler.UIA_TablePatternId,UIAHandler.IUIAutomationTablePattern)
@@ -317,7 +332,7 @@ class VismaSafGrid(UIA):
                         elif coltxt == "Kol 1":
                             coltxt = "Mapp"
                     # Aktiva kolumner i kolumnredigeringsdialogen
-                    if self.windowControlID == 7319 or self.windowControlID == 7320:
+                    elif self.windowControlID == 7319 or self.windowControlID == 7320:
                         if coltxt == "Kol 0":
                             coltxt = ""
                     # The list of companies in a backup
@@ -326,11 +341,10 @@ class VismaSafGrid(UIA):
                             coltxt = "Markerad"
                             ischeckbox = True
                     # Checkboxes
-                    if coltxt == "Markering" or coltxt == "Inaktiv" or coltxt == "Aktivt":
-                        ischeckbox = True
+                    ischeckbox = checkbox_cols.count(coltxt) > 0
+                    if ischeckbox:
                         if coltxt == "Markering":
                             coltxt = "Markerad"
-                    
                     punk=selement.getCurrentPattern(UIAHandler.UIA_ValuePatternId)
                     if punk:
                         valpat =punk.QueryInterface(UIAHandler.IUIAutomationValuePattern)
@@ -339,15 +353,17 @@ class VismaSafGrid(UIA):
                                 valtxt = valpat.CurrentValue;
                             except:
                                 valtxt = ""
+
+                        doread = True
                         if ischeckbox:
                             if valtxt == "1":
                                 valtxt = "Ja"
-                                valtxt = ""
                             elif valtxt == "0":
                                 valtxt = "Nej"
-                                valtxt = ""
-                                coltxt = ""
-                    ui.message("%s, %s" % (coltxt, valtxt))
+                                if coltxt == "Markerad":
+                                    doread = False
+                        if doread:
+                            ui.message("%s, %s" % (coltxt, valtxt))
                     
             # A grid that selects each cell
             else:
@@ -357,9 +373,7 @@ class VismaSafGrid(UIA):
                     coltxt = selement.CurrentName
                     ischeckbox = False
                     # Checkboxes
-                    if coltxt == "Skriv" or coltxt == "Skriv order" or coltxt == "Skriv följ" or coltxt == "Restn ej":
-                        ischeckbox = True
-                    
+                    ischeckbox = checkbox_cols.count(coltxt) > 0
                     punk = selement .getCurrentPattern(UIAHandler.UIA_ValuePatternId)
                     if punk:
                         valpat =punk.QueryInterface(UIAHandler.IUIAutomationValuePattern)
@@ -408,7 +422,7 @@ class VismaAdministrationSettingsPanel(gui.SettingsPanel):
         config.conf['VismaAdministration']['debugMode'] = self.debugModeCB.GetValue()
         config.conf['VismaAdministration']['sayNumGridRows'] = self.sayNumGridRowsCB.GetValue()
 
-class AdminTabControl(IAccessible):
+class SysTabControl32(IAccessible):
 
     def initOverlayClass(self):
         global last_tab_text
@@ -463,7 +477,7 @@ class AdminTabControl(IAccessible):
             return text
         return None            
 
-class AdminSystemDialog(IAccessible):
+class VismaSystemDialog(IAccessible):
 
     def _get_name(self):
         return None
@@ -479,7 +493,7 @@ class AdminSystemDialog(IAccessible):
         return None 
 
 
-class AdminControlBar(IAccessible):
+class VismaControlBar(IAccessible):
 
     def initOverlayClass(self):
         try:
@@ -503,4 +517,18 @@ class AdminControlBar(IAccessible):
     def _get_description(self):
         return None
 
+class SystemCheckButton(IAccessible):
+
+    __changeItemGestures = (
+        "kb:space",
+        )
     
+    def initOverlayClass(self):
+        for gesture in self.__changeItemGestures:
+            self.bindGesture(gesture, "changeItem")
+
+
+    def script_changeItem(self,gesture):
+        gesture.send()
+        speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+
