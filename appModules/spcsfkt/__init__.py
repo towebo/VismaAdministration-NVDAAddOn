@@ -217,26 +217,29 @@ class AppModule(appModuleHandler.AppModule):
             fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\shortcuts.txt"
             with open(fn, 'r') as f:
                 helplines = f.read().splitlines()
-                modulehelplines = [k for k in helplines if modul in k]
-                ui.message("Det finns %d kortkommandon" % len(modulehelplines))
-                for line in modulehelplines:
-                    lineparts = line.split('\t')
-                    keys = ""
-                    for c in lineparts[3]:
-                        keys = keys + c + " "
-                    txt = "%s %s, Alt + K %s, %s" % (lineparts[1], lineparts[2], keys, lineparts[4])
-                    ui.message(txt)
-
-                modul = "Allmänt"
-                generalhelplines = [k for k in helplines if modul in k]
-                ui.message("Det finns %d generella kortkommandon" % len(generalhelplines))
-                for line in generalhelplines:
-                    lineparts = line.split('\t')
-                    keys = ""
-                    for c in lineparts[3]:
-                        keys = keys + c + " "
-                    txt = "%s %s, Alt + K %s, %s" % (lineparts[1], lineparts[2], keys, lineparts[4])
-                    ui.message(txt)
+                
+                isSameScript = scriptHandler.getLastScriptRepeatCount()
+                if isSameScript  == 0:
+                    modulehelplines = [k for k in helplines if modul in k]
+                    ui.message("Det finns %d kortkommandon" % len(modulehelplines))
+                    for line in modulehelplines:
+                        lineparts = line.split('\t')
+                        keys = ""
+                        for c in lineparts[3]:
+                            keys = keys + c + " "
+                        txt = "%s %s, Alt + K %s, %s" % (lineparts[1], lineparts[2], keys, lineparts[4])
+                        ui.message(txt)
+                elif isSameScript  == 1:
+                    modul = "Allmänt"
+                    generalhelplines = [k for k in helplines if modul in k]
+                    ui.message("Det finns %d generella kortkommandon" % len(generalhelplines))
+                    for line in generalhelplines:
+                        lineparts = line.split('\t')
+                        keys = ""
+                        for c in lineparts[3]:
+                            keys = keys + c + " "
+                        txt = "%s %s, Alt + K %s, %s" % (lineparts[1], lineparts[2], keys, lineparts[4])
+                        ui.message(txt)
         except Exception as e:
             log.info("Fel i doReadVismaCommands: %s" % e)
             ui.message("Fel i doReadVismaCommands: %s" % e)

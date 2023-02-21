@@ -1,4 +1,4 @@
-WindowClassName	windowControlID 	Module	Text	Comment
+WindowClassName	windowControlID	Module	Text	Comment
 SafGrid	7407	spcsadm	Företagslista	
 SafGrid	7407	spcsfor	Föreningslista	
 SafGrid	21346	Offert	Offerter	
@@ -489,3 +489,22 @@ Edit	22221	Hämta projekt	Anteckning 1
 Edit	22222	Hämta projekt	Anteckning 2	
 Edit	22223	Hämta projekt	Anteckning 3	
 Edit	22224	Hämta projekt	Anteckning 4	
+Edit	22756	Inkommande följesedel	Leverantörsnummer	
+Edit	22757	Inkommande följesedel	Namn	
+Edit	22759	Inkommande följesedel	Följesedelsnummer	
+Edit	22761	Inkommande följesedel	Ankomstdatum	
+Edit	22760	Inkommande följesedel	Följesedelsdatum	
+Edit	22767	Inkommande följesedel	Resultatenhet	
+Edit	22766	Inkommande följesedel	Projekt	
+Edit	22763	Inkommande följesedel	Anteckning, rad 1	
+Edit	22764	Inkommande följesedel	Anteckning, rad 2	
+Edit	22765	Inkommande följesedel	Anteckning, rad 3	
+SafGrid	21557	Inkommande följesedel	Grid	
+SafGrid	21521	Beställning	Beställningsrader	
+SafGrid	21547	Inkommande följesedel		
+Edit	23660	Ny kund	Efternamn	
+Edit	23661	Ny kund	Förnamn	
+Edit	23649	Ny kund	Postnummer	
+Edit	23650	Ny kund	Ort	
+Edit	26707	Kundfaktura	Extra referenskod	
+Edit	26707	Order	Extra referenskod	
