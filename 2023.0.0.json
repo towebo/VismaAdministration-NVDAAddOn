@@ -1,0 +1,29 @@
+{
+	"addonId": "vismaAdministration",
+	"displayName": "Visma Administration",
+	"URL": "",
+	"description": "Fixes accessibility issues in Visma Administration/Fakturering/forening.",
+	"sha256": "2cfc75afc8652060504a3ef304e239c2d0f2bf1b946fa5d975dc240eadd440ef",
+	"homepage": null,
+	"addonVersionName": "2023.0",
+	"addonVersionNumber": {
+		"major": 2023,
+		"minor": 0,
+		"patch": 0
+	},
+	"minNVDAVersion": {
+		"major": 2021,
+		"minor": 0,
+		"patch": 0
+	},
+	"lastTestedVersion": {
+		"major": 2023,
+		"minor": 1,
+		"patch": 0
+	},
+	"channel": "stable",
+	"publisher": "",
+	"sourceURL": null,
+	"license": null,
+	"licenseURL": null
+}

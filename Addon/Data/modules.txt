@@ -1,0 +1,35 @@
+WindowText	Module
+order	Order
+offerter	Offert
+kundfakturor	Kundfaktura
+avtalsmall	Avtalsmall
+avtal	Avtal
+artiklar/tjänster	Artiklar och tjänster
+kunder	Kunder
+leverantörer	Leverantörer
+allmän	Allmän
+beställningar	Beställning
+inkommande följesedlar	Inkommande följesedel
+leverantörsfakturor	Leverantörsfaktura
+kontakter	Kontakter
+försäljningsprislistor	Prislistor
+manuella inleveranser	Manuell inleverans
+manuella utleveranser	Manuell utleverans
+inventering	Inventering
+prisinläsning	Prisinläsning
+prisomräkning kalkylpriser	Prisomräkning kalkylpriser
+prisomräkning leverantörspriser	Prisomräkning leverantörspriser
+ingående balans	Ingående balans
+verifikationer	Verifikationer
+resultatbudget	Resultatbudget
+resultatprognos	Resultatprognos
+balansbudget	Balansbudget
+balansprognos	Balansprognos
+kontoplan	Kontoplan
+kundrabatter	Kundrabatter
+medlemmar	Medlemmar
+konteringsmallar	Konteringsmallar
+gamla journaler	Gamla journaler
+momskontroll	Momskontroll
+periodiseringar	Periodiseringar
+fakturahantering	Fakturahantering
