@@ -1,10 +1,12 @@
-﻿import os
+import os
 import api
 import wx
 from ctypes import *
 import config
 import gui
 import appModuleHandler
+import addonHandler
+import locale
 from NVDAObjects.UIA import UIA
 from NVDAObjects.window import Window
 import UIAHandler
@@ -14,6 +16,7 @@ from NVDAObjects.IAccessible import IAccessible, ContentGenericClient
 import oleacc
 import speech
 import scriptHandler
+from scriptHandler import script
 
 import controlTypes
 import ui
@@ -65,6 +68,16 @@ class TCITEMWStruct(Structure):
         ('image', wintypes.INT),
         ('lParam', wintypes.LPARAM),
     ]
+
+addonHandler.initTranslation()
+
+# for debug logging
+DEBUG = False
+
+def debugLog(message):
+	if DEBUG:
+		log.info(message)
+
 
 
 class AppModule(appModuleHandler.AppModule):
@@ -126,7 +139,12 @@ class AppModule(appModuleHandler.AppModule):
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
             ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
     
-        
+    @script(
+        # Translators: Gesture description
+        description=_("Says info about the current control. Press twice to copy the information to the clipboard."),
+        category=_("Visma Administration"), 
+        gesture="kb:NVDA+i"
+    )
     def script_readControlInfo(self, obj):
         wnd = api.getFocusObject()
         module = self.getCurrentVismaModule(wnd)
@@ -221,7 +239,7 @@ class AppModule(appModuleHandler.AppModule):
                 isSameScript = scriptHandler.getLastScriptRepeatCount()
                 if isSameScript  == 0:
                     modulehelplines = [k for k in helplines if modul in k]
-                    ui.message("Det finns %d kortkommandon" % len(modulehelplines))
+                    ui.message(_("There are %d keyboard shortcuts") % len(modulehelplines))
                     for line in modulehelplines:
                         lineparts = line.split('\t')
                         keys = ""
@@ -232,7 +250,7 @@ class AppModule(appModuleHandler.AppModule):
                 elif isSameScript  == 1:
                     modul = "Allmänt"
                     generalhelplines = [k for k in helplines if modul in k]
-                    ui.message("Det finns %d generella kortkommandon" % len(generalhelplines))
+                    ui.message(_("There are %d common keyboard shortcuts") % len(generalhelplines))
                     for line in generalhelplines:
                         lineparts = line.split('\t')
                         keys = ""
@@ -245,14 +263,14 @@ class AppModule(appModuleHandler.AppModule):
             ui.message("Fel i doReadVismaCommands: %s" % e)
 
 
+    @script(
+        # Translators: Gesture description
+        description=_("Announces keyboard shortcuts for current view"),
+        category=_("Visma Administration"), 
+        gesture="kb:NVDA+h"
+    )
     def script_readVismaCommands(self, gesture):
         self.doReadVismaCommands()
-
-    __gestures = {
-        "kb:NVDA+h": "readVismaCommands",
-        "kb:NVDA+i": "readControlInfo"
-    }
-
 
 class VismaSafGrid(UIA):
 
@@ -297,12 +315,24 @@ class VismaSafGrid(UIA):
             ui.message("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
         nextHandler
 
+    @script(
+        # Translators: Gesture description
+        description=_("Says the number of rows in the current list"),
+        category=_("Visma Administration"), 
+        gesture="kb:NVDA+r"
+    )
     def script_readNumGridRows(self, gesture):
         # Pass the keystroke along
         #gesture.send()
         ui.message("Listan har %d rader" % self._get_rowCount())
         #ui.message("Rad %d är markerad" % self._get_rowNumber())
 
+    @script(
+        # Translators: Gesture description
+        description=_("Reads the selection of the list"),
+        category=_("Visma Administration"), 
+        gesture="kb:NVDA+m"
+    )
     def script_readGridSelection(self, gesture):
         # Pass the keystroke along
         #gesture.send()
@@ -396,13 +426,7 @@ class VismaSafGrid(UIA):
             log.info("Fel i readGridSelection: %s"%e)
             ui.message("Fel i readGridSelection: %s"%e)
             
-    
-    __gestures = {
-        "kb:NVDA+m": "readGridSelection",
-        "kb:NVDA+r": "readNumGridRows"
-        
 
-    }
 
 
 class VismaAdministrationSettingsPanel(gui.SettingsPanel):
@@ -411,14 +435,11 @@ class VismaAdministrationSettingsPanel(gui.SettingsPanel):
 
     def makeSettings(self, settingsSizer):
         helper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
-        # Translators: the label for the preference to choose the maximum number of stored history entries
-        #maxHistoryLengthLabelText = _('&Maximum number of history entries (requires NVDA restart to take effect)')
-        #self.maxHistoryLengthEdit = helper.addLabeledControl(maxHistoryLengthLabelText, nvdaControls.SelectOnFocusSpinCtrl, min=1, max=5000, initial=config.conf['speechHistory']['maxHistoryLength'])
-        # Translators: the label for the preference to trim whitespace from the start of text
-        self.debugModeCB = helper.addItem(wx.CheckBox(self, label=_('Utvecklarläge (Ger onödigt mycket information)')))
+        # Translators: Label for checkbox that controls if running in developer mode
+        self.debugModeCB = helper.addItem(wx.CheckBox(self, label=_('Developer Mode')))
         self.debugModeCB.SetValue(config.conf['VismaAdministration']['debugMode'])
-        # Translators: Nothig to see here
-        self.sayNumGridRowsCB = helper.addItem(wx.CheckBox(self, label=_('Säg antalet rader för listor automatiskt')))
+        # Translators: Checkbox in the settings panel
+        self.sayNumGridRowsCB = helper.addItem(wx.CheckBox(self, label=_('Say number of rows in lists automatically')))
         self.sayNumGridRowsCB.SetValue(config.conf['VismaAdministration']['sayNumGridRows'])
 
     def onSave(self):
