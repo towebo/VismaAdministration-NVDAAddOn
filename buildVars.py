@@ -31,7 +31,7 @@ addon_info = {
 	# URL for the add-on documentation support
 	"addon_url": None,
 	# URL for the add-on repository where the source code can be found
-	"addon_sourceURL": None,
+	"addon_sourceURL": "https://github.com/towebo/vismaadministration-nvdaaddon",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
@@ -56,11 +56,8 @@ addon_info = {
 # pythonSources = ["addon/globalPlugins/*.py"]
 # For more information on SCons Glob expressions please take a look at:
 # https://scons.org/doc/production/HTML/scons-user/apd.html
-pythonSources = []
 pythonSources = [
-	"addon/appModules/spcsadm/*.py",
-	"addon/appModules/spcsfkt/*.py",
-	"addon/appModules/spcsfor/*.py"
+	"Addon/appModules/vismaAdmin/*.py"
 ]
 
 # Files that contain strings for translation. Usually your python sources
