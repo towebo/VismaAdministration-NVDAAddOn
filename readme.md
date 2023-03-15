@@ -4,3 +4,4 @@ This add on implements this for NVDA and also provides labelling for many of the
 
 ## Supported Editions And Versions
 The add on can be used with Visma Administration 2000/1000/500/200, Visma Fakturering and Visma Förening version 2020.0 and higher.
+
