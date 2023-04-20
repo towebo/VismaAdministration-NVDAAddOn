@@ -34,8 +34,8 @@ jobs:
         sudo apt-get update  -y
         sudo apt-get install -y gettext
 
-    #- name: Code checks
-    #  run: export SKIP=no-commit-to-branch; pre-commit run --all
+    - name: Code checks
+      run: export SKIP=no-commit-to-branch; pre-commit run --all
 
     - name: building addon
       run: scons
