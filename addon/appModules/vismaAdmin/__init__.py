@@ -47,11 +47,11 @@ ExtraUIAEvents = {
 ctrllines = []
 module_lines = []
 
-fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\\\controls.txt"
+fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\data\\\\controls.txt"
 with open(fn, 'r') as f:
     ctrllines = f.read().splitlines()
 
-fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\\\modules.txt"
+fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\data\\\\modules.txt"
 with open(fn, 'r') as f:
     module_lines = f.read().splitlines()
     
@@ -232,7 +232,7 @@ class AppModule(appModuleHandler.AppModule):
         try:
             modul = self.getCurrentVismaModule(None)
             ui.message(modul)
-            fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\Data\\shortcuts.txt"
+            fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\data\\shortcuts.txt"
             with open(fn, 'r') as f:
                 helplines = f.read().splitlines()
                 
