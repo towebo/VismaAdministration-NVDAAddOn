@@ -33,3 +33,4 @@ gamla journaler	Gamla journaler
 momskontroll	Momskontroll
 periodiseringar	Periodiseringar
 fakturahantering	Fakturahantering
+Inställningar	Inställningar

@@ -187,7 +187,7 @@ Edit	23210		Landskod
 Edit	23186		Land	
 Edit	23187		Telefon	
 Edit	23188		Telefon 2	
-Edit	23189		Fax	
+Edit	23189		Telefon 3	
 Edit	23787		Referenskod	
 Edit	23190		Er referens	
 Edit	20748		Mobiltelefon	
@@ -249,7 +249,7 @@ Edit	22483		VAT-nummer
 Edit	22431		Telefon	
 Edit	22432		Telefon 2	
 Edit	23628		Telefon 3	
-Edit	22433		Fax	
+Edit	22433		Telefon 3	
 Edit	22425		Kortnamn	
 Edit	23808		Referenskod	
 Edit	22443		Referens	
@@ -267,7 +267,7 @@ Edit	22439		Avvikande Leveransadress, land
 Edit	22440		Avvikande Leveransadress, telefon	
 Edit	22441		Avvikande Leveransadress, telefon 2	
 Edit	23626		Avvikande Leveransadress, telefon 3	
-Edit	22442		Avvikande Leveransadress, fax	
+Edit	22442		Avvikande Leveransadress, Telefon 3	
 Edit	22446	Kunder	Kundkategori	
 Edit	22446	Medlemmar	Medlemskategori	
 Edit	22587	Medlemmar	Status	
@@ -479,7 +479,7 @@ Edit	22213	Hämta projekt	Kundnamn
 Edit	22215	Hämta projekt	Kundens ordernummer	
 Edit	22216	Hämta projekt	Kontaktperson	
 Edit	22217	Hämta projekt	Telefon	
-Edit	22218	Hämta projekt	Fax	
+Edit	22218	Hämta projekt	Telefon 3	
 Edit	22219	Hämta projekt	Arbetsplats	
 Edit	22220	Hämta projekt	Arbetsplats, fortsättning	
 Edit	22214	Hämta projekt	Vårt ordernummer	
@@ -508,3 +508,26 @@ Edit	23649	Ny kund	Postnummer
 Edit	23650	Ny kund	Ort	
 Edit	26707	Kundfaktura	Extra referenskod	
 Edit	26707	Order	Extra referenskod	
+Edit	21863	Inställningar	Företagsnamn	
+Edit	21864	Inställningar	Postadress	
+Edit	23728	Inställningar	GLN	
+Edit	21865	Inställningar	Besöksadress	
+Edit	21866	Inställningar	Postnummer	
+Edit	21867	Inställningar	Ort	
+Edit	23974	Inställningar	Landskod	
+Edit	21868	Inställningar	Land	
+Edit	22053	Inställningar	Säte	
+Edit	21869	Inställningar	Telefon	
+Edit	21870	Inställningar	Telefon 2	
+Edit	21871	Inställningar	Telefon 3	
+Edit	22048	Inställningar	E-post	
+Edit	22049	Inställningar	Hemsida	
+Edit	21874	Inställningar	Organisationsnummer	
+Edit	21981	Inställningar	VAT/Momsregistreringsnummer	
+Edit	21984	Inställningar	Branschkod (SNI)	
+Edit	21873	Inställningar	PlusGiro	
+Edit	21872	Inställningar	Bankgiro	
+Edit	24649	Inställningar	Konto till bankgiro:	
+Edit	21941	Inställningar	Inhemskt språk	
+Edit	21942	Inställningar	Inhemsk valuta	
+Edit	26701	Inställningar	Koncernens orgnr:	
