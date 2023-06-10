@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import os
 import api
 import wx
@@ -175,14 +177,6 @@ class AppModule(appModuleHandler.AppModule):
                         return self.last_module
                 except Exception as e:
                     pass
-                    #log.info("Fel i getCurrentVismaModule när wnd (%s, %d, %s) parent skulle hämtas: %s" % (wnd.windowClassName, wnd.windowControlID, wnd.name, e))
-                #if wnd is None:
-                #    try:
-                #        return self.appName
-                #    except Exception as e:
-                #        #log.info("Fel i getCurrentVismaModule när self.appName skulle hämtas: %s" % e)
-                #        #ui.message("Fel inträffade")
-                #        return None
                 
             module = wndtxt
             wndtxt = wndtxt.lower()
@@ -340,7 +334,7 @@ class VismaSafGrid(UIA):
         
         
     def ReadGridSelection(self):
-        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order"]
+        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift"]
         
         try:
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
