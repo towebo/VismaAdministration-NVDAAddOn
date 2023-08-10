@@ -137,6 +137,10 @@ class AppModule(appModuleHandler.AppModule):
                 clsList.insert(0, VismaControlBar)
             elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_CHECKBUTTON:
                 clsList.insert(0, SystemCheckButton)
+            elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_TEXT:
+                g = obj.parent.parent
+                if g.windowClassName == "SafGrid":
+                    clsList.insert(0, GridFilterEdit)
         except Exception as e:
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
             ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
@@ -334,7 +338,7 @@ class VismaSafGrid(UIA):
         
         
     def ReadGridSelection(self):
-        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift"]
+        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift", "Belopprabatt", "Restn ant"]
         
         try:
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
@@ -549,4 +553,22 @@ class SystemCheckButton(IAccessible):
     def script_changeItem(self,gesture):
         gesture.send()
         speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+
+class GridFilterEdit(IAccessible):
+
+    def initOverlayClass(self):
+        try:
+            UIAClient = UIAHandler.handler.clientObject 
+            grid = self.parent.parent
+            filter = grid.UIAElement.FindFirst(UIAHandler.TreeScope_Children, UIAClient.CreatePropertyCondition(UIAHandler.UIA_NamePropertyId, "Filter"))
+            handleCond = UIAClient.CreatePropertyCondition(UIAHandler.UIA_NativeWindowHandlePropertyId, self.windowHandle) 
+            UIAPointer = filter.FindFirstBuildCache(UIAHandler.TreeScope_Children, handleCond, UIAHandler.handler.baseCacheRequest) 
+            txt = UIAPointer.CurrentName
+            self.name = txt
+            # This feels wrong but the name won't be spoken when navigating between the filter textboxes with Tab and Shift + Tab without this line.
+            # Another little tidbit is that you have to press F3 twice to get in some kind of mode so this line makes difference.
+            ui.message(txt)
+        except Exception as e:
+            pass
+
 
