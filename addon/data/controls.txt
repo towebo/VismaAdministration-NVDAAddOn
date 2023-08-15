@@ -531,3 +531,13 @@ Edit	24649	Inställningar	Konto till bankgiro:
 Edit	21941	Inställningar	Inhemskt språk	
 Edit	21942	Inställningar	Inhemsk valuta	
 Edit	26701	Inställningar	Koncernens orgnr:	
+Edit	22554	Avtal	Avtalstid från och med	
+Edit	22555	Avtal	Avtalstid till och med	
+Edit	22316	Avtal	Orderdatum	
+Edit	22556	Avtal	Första faktureringsmånad	
+Edit	22554	Avtal	Avtalstid från och med	
+Edit	22555	Avtal	Avtalstid till och med	
+Edit	22556	Avtal	Första faktureringsmånad	
+Edit	22558	Avtal	Fakturadag	
+Edit	22557	Avtal	Fakturaintervall, månader	
+Edit	22564	Avtal	Nästa period, slut	

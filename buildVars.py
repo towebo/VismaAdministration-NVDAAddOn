@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Fixes accessibility issues in Visma Administration/Fakturering/forening."""),
 	# version
-	"addon_version": "2023.2",
+	"addon_version": "2023.2.1",
 	# Author(s)
 	"addon_author": "Karl-Otto Rosenqvist <karl-otto@mawingu.se>",
 	# URL for the add-on documentation support
