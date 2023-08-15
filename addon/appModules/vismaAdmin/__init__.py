@@ -338,7 +338,7 @@ class VismaSafGrid(UIA):
         
         
     def ReadGridSelection(self):
-        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift", "Belopprabatt", "Restn ant"]
+        checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift", "Belopprabatt", "Restn ant", "Avslutat", "Makulerat", "Ej klar"]
         
         try:
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
