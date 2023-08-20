@@ -1,0 +1,29 @@
+{
+	"addonId": "vismaAdministration",
+	"displayName": "Visma Administration",
+	"URL": "",
+	"description": "Fixes accessibility issues in Visma Administration/Fakturering/forening.",
+	"sha256": "7a91fb1824171851da9a1fec3185ea58205d66849df187bbf2a60ca809e65c7c",
+	"homepage": null,
+	"addonVersionName": "2023.2.1",
+	"addonVersionNumber": {
+		"major": 2023,
+		"minor": 2,
+		"patch": 1
+	},
+	"minNVDAVersion": {
+		"major": 2021,
+		"minor": 1,
+		"patch": 0
+	},
+	"lastTestedVersion": {
+		"major": 2023,
+		"minor": 1,
+		"patch": 0
+	},
+	"channel": "stable",
+	"publisher": "",
+	"sourceURL": "https://github.com/towebo/vismaadministration-nvdaaddon",
+	"license": null,
+	"licenseURL": null
+}

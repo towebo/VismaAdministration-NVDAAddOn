@@ -291,8 +291,7 @@ class VismaSafGrid(UIA):
             if self.name != "Grid":
                 ui.message(self.name)
             if config.conf['VismaAdministration']['sayNumGridRows']:
-                ui.message("Listan har %d rader" % self._get_rowCount())
-            #ui.message("Rad %d är markerad" % self._get_rowNumber())
+                ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
             self.ReadGridSelection()
         except Exception as e:
             log.info("Fel i VismaSafGrid.gainFocus: %s" % e)
@@ -315,15 +314,13 @@ class VismaSafGrid(UIA):
 
     @script(
         # Translators: Gesture description
-        description=_("Says the number of rows in the current list"),
+        description=_("Says the current cell position and number of rows in the current list"),
         category=_("Visma Administration"), 
         gesture="kb:NVDA+r"
     )
     def script_readNumGridRows(self, gesture):
-        # Pass the keystroke along
-        #gesture.send()
-        ui.message("Listan har %d rader" % self._get_rowCount())
-        #ui.message("Rad %d är markerad" % self._get_rowNumber())
+        ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
+        self.ReadGridSelection()
 
     @script(
         # Translators: Gesture description
@@ -343,7 +340,6 @@ class VismaSafGrid(UIA):
         try:
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
             #tablepat = nav._getUIAPattern(UIAHandler.UIA_TablePatternId,UIAHandler.IUIAutomationTablePattern)
-            #tableitempat = nav._getUIAPattern(UIAHandler.UIA_TableItemPatternId,UIAHandler.IUIAutomationTableItemPattern)
             #selpat = nav._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
             selpat = self._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
             
@@ -425,6 +421,17 @@ class VismaSafGrid(UIA):
             ui.message("Fel i readGridSelection: %s"%e)
             
 
+
+    def GetCurrentRow(self):
+        try:
+            selpat = self._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
+            cursel = selpat.GetCurrentSelection()
+            selement = cursel.GetElement(0)
+            return selement.GetCurrentPropertyValue(UIAHandler.UIA_GridItemRowPropertyId)
+        except Exception as e:
+            log.info("Fel i readGridSelection: %s"%e)
+            ui.message("Fel i readGridSelection: %s"%e)
+            return None
 
 
 class VismaAdministrationSettingsPanel(gui.SettingsPanel):
