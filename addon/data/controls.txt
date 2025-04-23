@@ -56,7 +56,7 @@ Edit	22628		Lagerplats
 Edit	22629		Vikt	
 Edit	22630		Volym	
 Button	22657		Lagervärdet är inaktivt	
-Edit	v		Normal leveranstid	Artikelkort, flik 3
+Edit	22627		Normal leveranstid	Artikelkort, flik 3
 Edit	22631		Huvudleverantör	
 Edit	22653		Kalkylpris, inpris	
 Edit	22654		Kalkylpris, frakt	
@@ -249,7 +249,7 @@ Edit	22483		VAT-nummer
 Edit	22431		Telefon	
 Edit	22432		Telefon 2	
 Edit	23628		Telefon 3	
-Edit	22433		Telefon 3	
+Edit	22433		Telefon 4	
 Edit	22425		Kortnamn	
 Edit	23808		Referenskod	
 Edit	22443		Referens	
@@ -541,3 +541,7 @@ Edit	22556	Avtal	Första faktureringsmånad
 Edit	22558	Avtal	Fakturadag	
 Edit	22557	Avtal	Fakturaintervall, månader	
 Edit	22564	Avtal	Nästa period, slut	
+Edit	21317	Skapa fakturor	Fakturera till och med	
+SafGrid	26607	Inläsning underlag	Underlag	
+SafGrid	26616	Inläsning underlag	Konteringsförslag	
+SafGrid	21641	Artiklar och tjänster	Strukturartiklar	

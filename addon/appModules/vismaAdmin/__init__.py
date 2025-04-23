@@ -284,6 +284,7 @@ class VismaSafGrid(UIA):
     def script_changeItem(self,gesture):
         gesture.send()
         self.ReadGridSelection()
+        pass
 
 
     def event_gainFocus(self):
@@ -293,6 +294,7 @@ class VismaSafGrid(UIA):
             if config.conf['VismaAdministration']['sayNumGridRows']:
                 ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
             self.ReadGridSelection()
+            pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.gainFocus: %s" % e)
             ui.message("Fel i VismaSafGrid.gainFocus: %s" % e)
@@ -300,6 +302,7 @@ class VismaSafGrid(UIA):
     def event_UIA_selectionInvalidated(self):
         try:
             self.ReadGridSelection()
+            pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_selectionInvalidated: %s" % e)
             ui.message("Fel i VismaSafGrid.event_UIA_selectionInvalidated: %s" % e)
@@ -307,6 +310,7 @@ class VismaSafGrid(UIA):
     def event_UIA_AutomationFocusChanged(self, obj, nextHandler):
         try:
             self.ReadGridSelection()
+            pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
             ui.message("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
@@ -321,6 +325,7 @@ class VismaSafGrid(UIA):
     def script_readNumGridRows(self, gesture):
         ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
         self.ReadGridSelection()
+        pass
 
     @script(
         # Translators: Gesture description
@@ -332,6 +337,7 @@ class VismaSafGrid(UIA):
         # Pass the keystroke along
         #gesture.send()
         self.ReadGridSelection()
+        pass
         
         
     def ReadGridSelection(self):
@@ -424,7 +430,12 @@ class VismaSafGrid(UIA):
 
     def GetCurrentRow(self):
         try:
+            UIAPointer = UIAClient.ElementFromHandleBuildCache(self.windowHandle, UIAHandler.handler.baseCacheRequest) 
+            if UIAPointer == None:
+                return 0
             selpat = self._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
+            if selpat == None:
+                return 0
             cursel = selpat.GetCurrentSelection()
             selement = cursel.GetElement(0)
             return selement.GetCurrentPropertyValue(UIAHandler.UIA_GridItemRowPropertyId)
@@ -483,6 +494,7 @@ class SysTabControl32(IAccessible):
         if idx == -1:
             tabidx = watchdog.cancellableSendMessage(self.windowHandle, TCM_GETCURSEL, 0, 0)
         bufLen = 256
+        #ui.message("Flik: %d" % tabidx)
         info = TCITEMWStruct()
         info.mask = TCIF_TEXT
         info.textMax = bufLen - 1
