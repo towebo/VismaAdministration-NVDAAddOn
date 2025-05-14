@@ -65,7 +65,7 @@ class TCITEMWStruct(Structure):
         ("mask", wintypes.UINT),
         ('state', wintypes.DWORD),
         ('stateMask', wintypes.DWORD),
-        ('text', wintypes.LPWSTR),
+        ('text', c_longlong),
         ('textMax', wintypes.INT),
         ('image', wintypes.INT),
         ('lParam', wintypes.LPARAM),
