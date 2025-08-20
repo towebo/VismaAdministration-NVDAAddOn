@@ -26,6 +26,9 @@ addon_info = {
 	"addon_description": _("""Fixes accessibility issues in Visma Administration/Fakturering/forening."""),
 	# version
 	"addon_version": "2025.1.1",
+	# Brief changelog for this version
+	# Translators: what's new content for the add-on version to be shown in the add-on store
+	"addon_changelog": _("""Fixed the reading of texts on tabs in the detail views with tabs."""),
 	# Author(s)
 	"addon_author": "Karl-Otto Rosenqvist <karl-otto@mawingu.se>",
 	# URL for the add-on documentation support
@@ -79,3 +82,22 @@ baseLanguage = "sv"
 # Extensions string must be of the form "markdown.extensions.extensionName"
 # e.g. "markdown.extensions.tables" to add tables.
 markdownExtensions = []
+
+# Custom braille translation tables
+# If your add-on includes custom braille tables (most will not), fill out this dictionary.
+# Each key is a dictionary named according to braille table file name,
+# with keys inside recording the following attributes:
+# displayName (name of the table shown to users and translatable),
+# contracted (contracted (True) or uncontracted (False) braille code),
+# output (shown in output table list),
+# input (shown in input table list).
+brailleTables = {}
+
+# Custom speech symbol dictionaries
+# Symbol dictionary files reside in the locale folder, e.g. `locale\en`, and are named `symbols-<name>.dic`.
+# If your add-on includes custom speech symbol dictionaries (most will not), fill out this dictionary.
+# Each key is the name of the dictionary,
+# with keys inside recording the following attributes:
+# displayName (name of the speech dictionary shown to users and translatable),
+# mandatory (True when always enabled, False when not.
+symbolDictionaries = {}
