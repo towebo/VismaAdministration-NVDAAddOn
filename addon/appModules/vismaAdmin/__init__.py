@@ -59,6 +59,7 @@ with open(fn, 'r') as f:
     
 
 last_tab_text = ""
+last_col_title = ""
 
 class TCITEMWStruct(Structure):
     _fields_=[
@@ -289,6 +290,8 @@ class VismaSafGrid(UIA):
 
     def event_gainFocus(self):
         try:
+            global last_col_title
+            last_col_title = ""
             if self.name != "Grid":
                 ui.message(self.name)
             if config.conf['VismaAdministration']['sayNumGridRows']:
@@ -421,7 +424,13 @@ class VismaSafGrid(UIA):
                             elif valtxt == "0":
                                 valtxt = "Nej"
 
-                    ui.message("%s, %s" % (coltxt, valtxt))
+                        global last_col_title
+
+                        if (coltxt == last_col_title):
+                            ui.message("%s" % (valtxt))
+                        else:
+                            last_col_title = coltxt
+                            ui.message("%s, %s" % (coltxt, valtxt))
         except Exception as e:
             log.info("Fel i readGridSelection: %s"%e)
             ui.message("Fel i readGridSelection: %s"%e)
