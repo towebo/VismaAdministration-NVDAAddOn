@@ -128,7 +128,7 @@ class AppModule(appModuleHandler.AppModule):
             
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
         try:
-            if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s":
+            if obj.windowClassName == "SafGrid" or obj.windowClassName == "AfxWnd140s" or obj.windowClassName == "AfxWnd140su":
                 clsList.insert(0, VismaSafGrid)
             elif isinstance(obj, IAccessible) and obj.IAccessibleRole == oleacc.ROLE_SYSTEM_DIALOG:
                 clsList.insert(0, VismaSystemDialog)
