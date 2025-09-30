@@ -545,3 +545,41 @@ Edit	21317	Skapa fakturor	Fakturera till och med
 SafGrid	26607	Inläsning underlag	Underlag	
 SafGrid	26616	Inläsning underlag	Konteringsförslag	
 SafGrid	21641	Artiklar och tjänster	Strukturartiklar	
+Edit	24748	Leverantörer	Anteckningar	
+Edit	22770	Beställning	Leverantörsnummer	
+Edit	22772	Beställning	Leverantörens namn	
+Edit	22793	Beställning	Betalningsvillkor	
+Edit	22807	Beställning	Leveransvillkor	
+Edit	22794	Beställning	Leveranssätt	
+Edit	22798	Beställning	Resultatenhet	
+Edit	22797	Beställning	Projekt:	
+Edit	22795	Beställning	Beställningsdatum	
+Edit	22796	Beställning	Leveransdatum	
+Edit	22788	Beställning	Leverantörens ordernummer	
+Button	22792	Beställning	Skickad	
+Edit	22770	Beställning	Leverantörsnummer	
+Edit	22772	Beställning	Leverantörens namn	
+Edit	22774	Beställning	Postadress	
+Edit	23170	Beställning	Postadress 2	
+Edit	23730	Beställning	GLN	
+Edit	22776	Beställning	Postnummer	
+Edit	22777	Beställning	Ort	
+Edit	23598	Beställning	Landskod	
+Edit	22778	Beställning	Land	
+Edit	22804	Beställning	Vårt kundnummer	
+Edit	22786	Beställning	Språk	
+Edit	22787	Beställning	Valuta	
+Edit	22779	Beställning	Avvik. Namn	
+Edit	22780	Beställning	Avvik. Postadress	
+Edit	23172	Beställning	Avvik. Postadress 2	
+Edit	23731	Beställning	Avvik. GLN	
+Edit	22781	Beställning	Avvik. Besöksadress	
+Edit	22783	Beställning	Avvik. Postnummer	
+Edit	22782	Beställning	Avvik. Ort	
+Edit	23599	Beställning	Avvik. Landskod	
+Edit	22784	Beställning	Avvik. Landskod	
+Edit	22800	Beställning	Text 1	
+Edit	22801	Beställning	Text 2	
+Edit	22802	Beställning	Text 3	
+SafGrid	21559	Beställning	Artiklar	
+ComboBox	22803	Beställning	Spårningsval	
