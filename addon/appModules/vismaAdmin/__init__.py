@@ -6,6 +6,7 @@ import wx
 from ctypes import *
 import config
 import gui
+from gui.settingsDialogs import SettingsPanel
 import appModuleHandler
 import addonHandler
 import locale
@@ -189,7 +190,7 @@ class AppModule(appModuleHandler.AppModule):
             global module_lines
             lines = [k for k in module_lines if ("%s\t" % wndtxt) in k]
             if len(lines ) == 0:
-                log.info("Ny modul: %s" % module)
+                #log.info("Ny modul: %s" % module)
                 return module
             lineparts = lines[0].split('\t')
             module = lineparts[1]
@@ -454,7 +455,7 @@ class VismaSafGrid(UIA):
             return None
 
 
-class VismaAdministrationSettingsPanel(gui.SettingsPanel):
+class VismaAdministrationSettingsPanel(SettingsPanel):
     # Translators: the label/title for the Visma Administration settings panel.
     title = _('Visma Administration')
 
