@@ -4,6 +4,7 @@ import os
 import api
 import wx
 from ctypes import *
+import eventHandler
 import config
 import gui
 from gui.settingsDialogs import SettingsPanel
@@ -145,7 +146,6 @@ class AppModule(appModuleHandler.AppModule):
                     clsList.insert(0, GridFilterEdit)
         except Exception as e:
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
-            ui.message("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
     
     @script(
         # Translators: Gesture description
@@ -198,8 +198,7 @@ class AppModule(appModuleHandler.AppModule):
             return module
         except Exception as e:
             log.info("Fel i getCurrentVismaModule: %s" % e)
-            ui.message("Fel i getCurrentVismaModule: %s" % e)
-
+            
 
     def getControlName(self, obj, module):
         try:
@@ -225,7 +224,6 @@ class AppModule(appModuleHandler.AppModule):
             return lineparts[3]
         except Exception as e:
             log.info("Fel i getControlName: %s" % e)
-            ui.message("Fel i getControlName: %s" % e)
 
 
     def doReadVismaCommands(self):
@@ -260,8 +258,6 @@ class AppModule(appModuleHandler.AppModule):
                         ui.message(txt)
         except Exception as e:
             log.info("Fel i doReadVismaCommands: %s" % e)
-            ui.message("Fel i doReadVismaCommands: %s" % e)
-
 
     @script(
         # Translators: Gesture description
@@ -274,15 +270,9 @@ class AppModule(appModuleHandler.AppModule):
 
 class VismaSafGrid(UIA):
 
-    __changeItemGestures = (
-        "kb:space",
-        )
-    
-    def initOverlayClass(self):
-        for gesture in self.__changeItemGestures:
-            self.bindGesture(gesture, "changeItem")
-
-
+    @script(
+        gesture="kb:space"
+    )
     def script_changeItem(self,gesture):
         gesture.send()
         self.ReadGridSelection()
@@ -301,7 +291,6 @@ class VismaSafGrid(UIA):
             pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.gainFocus: %s" % e)
-            ui.message("Fel i VismaSafGrid.gainFocus: %s" % e)
     
     def event_UIA_selectionInvalidated(self):
         try:
@@ -309,7 +298,6 @@ class VismaSafGrid(UIA):
             pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_selectionInvalidated: %s" % e)
-            ui.message("Fel i VismaSafGrid.event_UIA_selectionInvalidated: %s" % e)
         
     def event_UIA_AutomationFocusChanged(self, obj, nextHandler):
         try:
@@ -317,7 +305,6 @@ class VismaSafGrid(UIA):
             pass
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
-            ui.message("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
         nextHandler
 
     @script(
@@ -434,7 +421,6 @@ class VismaSafGrid(UIA):
                             ui.message("%s, %s" % (coltxt, valtxt))
         except Exception as e:
             log.info("Fel i readGridSelection: %s"%e)
-            ui.message("Fel i readGridSelection: %s"%e)
             
 
 
@@ -451,7 +437,6 @@ class VismaSafGrid(UIA):
             return selement.GetCurrentPropertyValue(UIAHandler.UIA_GridItemRowPropertyId)
         except Exception as e:
             log.info("Fel i readGridSelection: %s"%e)
-            ui.message("Fel i readGridSelection: %s"%e)
             return None
 
 
@@ -488,7 +473,6 @@ class SysTabControl32(IAccessible):
             speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
         except Exception as e:
             log.info("Fel i VismaTabControl.gainFocus: %s" % e)
-            ui.message("Fel i VismaTabControl.gainFocus: %s" % e)
 
     def _get_name(self):
         return self.get_tab_text(-1)
@@ -560,7 +544,6 @@ class VismaControlBar(IAccessible):
                 api.moveMouseToNVDAObject(btn)
         except Exception as e:
             log.info("Fel i AdminControlBar.initOverlayClass: %s" % e)
-            ui.message("Fel i AdminControlBar.initOverlayClass: %s" % e)
     
     def _get_name(self):
         return None
@@ -570,18 +553,12 @@ class VismaControlBar(IAccessible):
 
 class SystemCheckButton(IAccessible):
 
-    __changeItemGestures = (
-        "kb:space",
-        )
-    
-    def initOverlayClass(self):
-        for gesture in self.__changeItemGestures:
-            self.bindGesture(gesture, "changeItem")
-
-
+    @script(
+        gesture="kb:space"
+    )
     def script_changeItem(self,gesture):
         gesture.send()
-        speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+        eventHandler.executeEvent("stateChange", self)
 
 class GridFilterEdit(IAccessible):
 

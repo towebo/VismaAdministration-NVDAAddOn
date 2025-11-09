@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Fixes accessibility issues in Visma Administration/Fakturering/forening."""),
 	# version
-	"addon_version": "2025.1.5",
+	"addon_version": "2025.1.6",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
 	"addon_changelog": _("""Irriterande upprepning av texten 'ruta' filtreras bort."""),

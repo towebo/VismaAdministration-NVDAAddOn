@@ -7,6 +7,10 @@ import speech
 from logHandler import log
 
 
+# This code has been written because NVDA sometimes announces the text "ruta" (window) when moving up and down in one of the grid
+# controls that has full row selection. It's very very vey very annoying and it slows down your navigation radically.
+# I don't know why this happens but it's probably due to window messages/focus events firing. It can be as many as ten times announced so this
+# was a welcome workaround. Yes, you can hear the difference because there's a little delay instead of all the "ruta" but that's ok in parity.
 TARGET_EXE = "spcsadm.exe"
 TEXT_TO_SUPPRESS = "ruta"
 
