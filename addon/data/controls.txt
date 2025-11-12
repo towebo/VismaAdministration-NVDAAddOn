@@ -583,3 +583,7 @@ Edit	22801	Beställning	Text 2
 Edit	22802	Beställning	Text 3	
 SafGrid	21559	Beställning	Artiklar	
 ComboBox	22803	Beställning	Spårningsval	
+Edit	2603	Aktivering av programvaran	Kundnummer	
+Edit	2606	Aktivering av programvaran	Organisationsnummer	
+Edit	23415	Lösenord	Signatur	
+Edit	23416	Lösenord	Lösenord	

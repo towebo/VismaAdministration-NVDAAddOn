@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+import NVDAObjects
 import os
 import api
 import wx
@@ -106,26 +107,26 @@ class AppModule(appModuleHandler.AppModule):
         gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(VismaAdministrationSettingsPanel)
 
 
-    def event_NVDAObject_init(self, obj):
-        if not isinstance(obj, Window):
-            pass
-        module = self.getCurrentVismaModule(obj)
-        # Only store the module if it's something else than the app so it's useful.
-        if module != obj.appModule.appName:
-            self.last_module = module
-        txt = self.getControlName(obj, self.last_module)
-        if txt is None or txt =="":
-            txt = self.getControlName(obj, module)
+    #def event_NVDAObject_init(self, obj):
+    #    if not isinstance(obj, Window):
+    #        pass
+    #    module = self.getCurrentVismaModule(obj)
+    #    # Only store the module if it's something else than the app so it's useful.
+    #    if module != obj.appModule.appName:
+    #        self.last_module = module
+    #    txt = self.getControlName(obj, self.last_module)
+    #    if txt is None or txt =="":
+    #        txt = self.getControlName(obj, module)
 
-        if txt != None:
-            obj.name = txt
-        else:
-            if config.conf['VismaAdministration']['debugMode']:
-                if obj.windowClassName == "Button" or obj.windowClassName == "Edit" or obj.windowClassName == "ComboBox":
-                    try:
-                        obj.name = "%s, %s, %d, %s" % ( obj.name, obj.displayText, obj.windowControlID, obj.windowClassName )
-                    except:
-                        obj.name = "%d, %s" % ( obj.windowControlID, obj.windowClassName )
+        #if txt != None:
+        #    obj.name = txt
+        #else:
+        #    if config.conf['VismaAdministration']['debugMode']:
+        #        if obj.windowClassName == "Button" or obj.windowClassName == "Edit" or obj.windowClassName == "ComboBox":
+        #            try:
+        #                obj.name = "%s, %s, %d, %s" % ( obj.name, obj.displayText, obj.windowControlID, obj.wind#owClassName )
+        #            except:
+        #                obj.name = "%d, %s" % ( obj.windowControlID, obj.windowClassName )
 
             
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
@@ -144,6 +145,10 @@ class AppModule(appModuleHandler.AppModule):
                 g = obj.parent.parent
                 if g.windowClassName == "SafGrid":
                     clsList.insert(0, GridFilterEdit)
+                else:
+                    clsList.insert(0, VismaLabeledObject)
+            elif isinstance(obj, IAccessible) and (obj.windowClassName == "Button" or obj.windowClassName == "ComboBox"):
+                clsList.insert(0, VismaLabeledObject)
         except Exception as e:
             log.info("Fel i chooseNVDAObjectOverlayClasses: %s" % e)
     
@@ -270,6 +275,32 @@ class AppModule(appModuleHandler.AppModule):
 
 class VismaSafGrid(UIA):
 
+    _original = None
+
+    def __init__(self, obj):
+        super(VismaSafGrid, self).__init__(obj._rawA11yObject if hasattr(obj, "_rawA11yObject") else obj)
+        self._original = obj
+
+    def _getAppModule(self):
+        try:
+            return getattr(self._original, "appModule", None)
+        except Exception:
+            log.exception("Error obtaining appModule from original object")
+            return None
+
+    def _get_name(self):
+        am = self.appModule
+        module = am.getCurrentVismaModule(self)
+        # Only store the module if it's something else than the app so it's useful.
+        if module != self.appModule.appName:
+            am.last_module = module
+
+        txt = am.getControlName(self, am.last_module)
+        if txt is None or txt =="":
+            txt = am.getControlName(self, module)
+        return txt
+
+
     @script(
         gesture="kb:space"
     )
@@ -283,8 +314,6 @@ class VismaSafGrid(UIA):
         try:
             global last_col_title
             last_col_title = ""
-            if self.name != "Grid":
-                ui.message(self.name)
             if config.conf['VismaAdministration']['sayNumGridRows']:
                 ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
             self.ReadGridSelection()
@@ -439,6 +468,23 @@ class VismaSafGrid(UIA):
             log.info("Fel i readGridSelection: %s"%e)
             return None
 
+class VismaLabeledObject(IAccessible):
+
+    def _get_name(self):
+        try:
+            am = self.appModule
+            module = am.getCurrentVismaModule(self)
+            # Only store the module if it's something else than the app so it's useful.
+            if module != self.appModule.appName:
+                am.last_module = module
+            txt = am.getControlName(self, am.last_module)
+            if txt is None or txt =="":
+                txt = am.getControlName(self, module)
+            if txt is None or txt =="":
+                txt = self.displayText
+            return txt
+        except Exception as e:
+            log.info("Fel i VismaLabeledObject._get_name: %s" % e)
 
 class VismaAdministrationSettingsPanel(SettingsPanel):
     # Translators: the label/title for the Visma Administration settings panel.
@@ -459,12 +505,12 @@ class VismaAdministrationSettingsPanel(SettingsPanel):
 
 class SysTabControl32(IAccessible):
 
-    def initOverlayClass(self):
-        global last_tab_text
-        txt = self.name
-        if txt != last_tab_text:
-            last_tab_text = txt
-            speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
+    #def initOverlayClass(self):
+    #    global last_tab_text
+    #    txt = self.name
+    #    if txt != last_tab_text:
+    #        last_tab_text = txt
+    #        speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
 
     def event_gainFocus(self):
         try:
@@ -488,7 +534,6 @@ class SysTabControl32(IAccessible):
         if idx == -1:
             tabidx = watchdog.cancellableSendMessage(self.windowHandle, TCM_GETCURSEL, 0, 0)
         bufLen = 256
-        #ui.message("Flik: %d" % tabidx)
         info = TCITEMWStruct()
         info.mask = TCIF_TEXT
         info.textMax = bufLen - 1
@@ -562,7 +607,7 @@ class SystemCheckButton(IAccessible):
 
 class GridFilterEdit(IAccessible):
 
-    def initOverlayClass(self):
+    def _get_name(self):
         try:
             UIAClient = UIAHandler.handler.clientObject 
             grid = self.parent.parent
@@ -570,11 +615,21 @@ class GridFilterEdit(IAccessible):
             handleCond = UIAClient.CreatePropertyCondition(UIAHandler.UIA_NativeWindowHandlePropertyId, self.windowHandle) 
             UIAPointer = filter.FindFirstBuildCache(UIAHandler.TreeScope_Children, handleCond, UIAHandler.handler.baseCacheRequest) 
             txt = UIAPointer.CurrentName
-            self.name = txt
-            # This feels wrong but the name won't be spoken when navigating between the filter textboxes with Tab and Shift + Tab without this line.
-            # Another little tidbit is that you have to press F3 twice to get in some kind of mode so this line makes difference.
-            ui.message(txt)
+            return txt
         except Exception as e:
             pass
 
+    @script(
+        gesture="kb:tab"
+    )
+    def script_nextFilterEdit(self,gesture):
+        gesture.send()
+        ui.message(self.name)
+
+    @script(
+        gesture="kb:shift+tab"
+    )
+    def script_prevFilterEdit(self,gesture):
+        gesture.send()
+        ui.message(self.name)
 
