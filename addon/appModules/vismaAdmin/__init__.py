@@ -22,10 +22,9 @@ import oleacc
 import speech
 import scriptHandler
 from scriptHandler import script
-
+from eventHandler import executeEvent
 import controlTypes
 import ui
-import tones
 from logHandler import log
 
 
@@ -105,29 +104,6 @@ class AppModule(appModuleHandler.AppModule):
         }
         config.conf.spec['VismaAdministration'] = confspec
         gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(VismaAdministrationSettingsPanel)
-
-
-    #def event_NVDAObject_init(self, obj):
-    #    if not isinstance(obj, Window):
-    #        pass
-    #    module = self.getCurrentVismaModule(obj)
-    #    # Only store the module if it's something else than the app so it's useful.
-    #    if module != obj.appModule.appName:
-    #        self.last_module = module
-    #    txt = self.getControlName(obj, self.last_module)
-    #    if txt is None or txt =="":
-    #        txt = self.getControlName(obj, module)
-
-        #if txt != None:
-        #    obj.name = txt
-        #else:
-        #    if config.conf['VismaAdministration']['debugMode']:
-        #        if obj.windowClassName == "Button" or obj.windowClassName == "Edit" or obj.windowClassName == "ComboBox":
-        #            try:
-        #                obj.name = "%s, %s, %d, %s" % ( obj.name, obj.displayText, obj.windowControlID, obj.wind#owClassName )
-        #            except:
-        #                obj.name = "%d, %s" % ( obj.windowControlID, obj.windowClassName )
-
             
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
         try:
@@ -161,7 +137,6 @@ class AppModule(appModuleHandler.AppModule):
     def script_readControlInfo(self, obj):
         wnd = api.getFocusObject()
         module = self.getCurrentVismaModule(wnd)
-        
         txt = "%s\t%d\t%s\t%s\t" % ( wnd.windowClassName, wnd.windowControlID, module,wnd.name )
 
         isSameScript = scriptHandler.getLastScriptRepeatCount()
@@ -233,8 +208,8 @@ class AppModule(appModuleHandler.AppModule):
 
     def doReadVismaCommands(self):
         try:
-            modul = self.getCurrentVismaModule(None)
-            ui.message(modul)
+            module = self.getCurrentVismaModule(None)
+            ui.message(module)
             fn = os.path.dirname(os.path.abspath(__file__)) + "\\..\\..\\data\\shortcuts.txt"
             with open(fn, 'r') as f:
                 helplines = f.read().splitlines()
@@ -275,11 +250,13 @@ class AppModule(appModuleHandler.AppModule):
 
 class VismaSafGrid(UIA):
 
+    _selected_text = None
     _original = None
 
     def __init__(self, obj):
         super(VismaSafGrid, self).__init__(obj._rawA11yObject if hasattr(obj, "_rawA11yObject") else obj)
         self._original = obj
+
 
     def _getAppModule(self):
         try:
@@ -306,8 +283,10 @@ class VismaSafGrid(UIA):
     )
     def script_changeItem(self,gesture):
         gesture.send()
-        self.ReadGridSelection()
-        pass
+        self._selected_text = self.getGridSelection()
+        executeEvent("valueChange", self)
+        executeEvent("nameChange", self)
+
 
 
     def event_gainFocus(self):
@@ -316,22 +295,25 @@ class VismaSafGrid(UIA):
             last_col_title = ""
             if config.conf['VismaAdministration']['sayNumGridRows']:
                 ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
-            self.ReadGridSelection()
-            pass
+            self._selected_text = self.getGridSelection()
+            executeEvent("valueChange", self)
+            executeEvent("nameChange", self)
         except Exception as e:
             log.info("Fel i VismaSafGrid.gainFocus: %s" % e)
     
     def event_UIA_selectionInvalidated(self):
         try:
-            self.ReadGridSelection()
-            pass
+            self._selected_text = self.getGridSelection()
+            executeEvent("valueChange", self)
+            executeEvent("nameChange", self)
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_selectionInvalidated: %s" % e)
         
     def event_UIA_AutomationFocusChanged(self, obj, nextHandler):
         try:
-            self.ReadGridSelection()
-            pass
+            self._selected_text = self.getGridSelection()
+            executeEvent("valueChange", self)
+            executeEvent("nameChange", self)
         except Exception as e:
             log.info("Fel i VismaSafGrid.event_UIA_AutomationFocusChanged: %s" % e)
         nextHandler
@@ -344,8 +326,7 @@ class VismaSafGrid(UIA):
     )
     def script_readNumGridRows(self, gesture):
         ui.message("Rad %d av %d markerad" % (self.GetCurrentRow() + 1, self._get_rowCount()))
-        self.ReadGridSelection()
-        pass
+        ui.message(_selected_text)
 
     @script(
         # Translators: Gesture description
@@ -356,14 +337,22 @@ class VismaSafGrid(UIA):
     def script_readGridSelection(self, gesture):
         # Pass the keystroke along
         #gesture.send()
-        self.ReadGridSelection()
-        pass
-        
-        
-    def ReadGridSelection(self):
+        ui.message(_selected_text)
+
+    def _get_displayText(self):
+        return self._selected_text
+
+    def _get_windowText(self):
+        return self._selected_text
+
+    def _get_value(self):
+        return self._selected_text
+
+    def getGridSelection(self):
         checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift", "Belopprabatt", "Restn ant", "Avslutat", "Makulerat", "Ej klar"]
         
         try:
+            result = ""
             #gridpat = nav._getUIAPattern(UIAHandler.UIA_GridPatternId,UIAHandler.IUIAutomationGridPattern)
             #tablepat = nav._getUIAPattern(UIAHandler.UIA_TablePatternId,UIAHandler.IUIAutomationTablePattern)
             #selpat = nav._getUIAPattern(UIAHandler.UIA_SelectionPatternId,UIAHandler.IUIAutomationSelectionPattern)
@@ -416,7 +405,8 @@ class VismaSafGrid(UIA):
                                 if coltxt == "Markerad" or coltxt == "Inaktiv":
                                     doread = False
                         if doread:
-                            ui.message("%s, %s" % (coltxt, valtxt))
+                            #ui.message("%s, %s" % (coltxt, valtxt))
+                            result = result + "%s, %s, " % (coltxt, valtxt)
                     
             # A grid that selects each cell
             else:
@@ -444,15 +434,16 @@ class VismaSafGrid(UIA):
                         global last_col_title
 
                         if (coltxt == last_col_title):
-                            ui.message("%s" % (valtxt))
+                            #ui.message("%s" % (valtxt))
+                            result = result + "%s, " % (valtxt)
                         else:
                             last_col_title = coltxt
-                            ui.message("%s, %s" % (coltxt, valtxt))
+                            #ui.message("%s, %s" % (coltxt, valtxt))
+                            result = result + "%s, %s, " % (coltxt, valtxt)
+            return result
         except Exception as e:
-            log.info("Fel i readGridSelection: %s"%e)
+            log.info("Fel i getGridSelection: %s"%e)
             
-
-
     def GetCurrentRow(self):
         try:
             UIAPointer = UIAClient.ElementFromHandleBuildCache(self.windowHandle, UIAHandler.handler.baseCacheRequest) 
@@ -465,7 +456,7 @@ class VismaSafGrid(UIA):
             selement = cursel.GetElement(0)
             return selement.GetCurrentPropertyValue(UIAHandler.UIA_GridItemRowPropertyId)
         except Exception as e:
-            log.info("Fel i readGridSelection: %s"%e)
+            log.info("Fel i GetCurrentRow: %s"%e)
             return None
 
 class VismaLabeledObject(IAccessible):
@@ -515,7 +506,7 @@ class SysTabControl32(IAccessible):
     def event_gainFocus(self):
         try:
             # Ensure the selected tab text is spoken instead of 'Fliksidor'
-            self.name = self.get_tab_text(-1)
+            #self.name = self.get_tab_text(-1)
             speech.speakObject(self, reason=controlTypes.OutputReason.FOCUS)
         except Exception as e:
             log.info("Fel i VismaTabControl.gainFocus: %s" % e)
