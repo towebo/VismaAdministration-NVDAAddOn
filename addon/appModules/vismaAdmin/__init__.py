@@ -277,6 +277,8 @@ class VismaSafGrid(UIA):
             txt = am.getControlName(self, module)
         return txt
 
+    def _get_value(self):
+        return self._selected_text
 
     @script(
         gesture="kb:space"
@@ -338,15 +340,6 @@ class VismaSafGrid(UIA):
         # Pass the keystroke along
         #gesture.send()
         ui.message(_selected_text)
-
-    def _get_displayText(self):
-        return self._selected_text
-
-    def _get_windowText(self):
-        return self._selected_text
-
-    def _get_value(self):
-        return self._selected_text
 
     def getGridSelection(self):
         checkbox_cols = ["Markering", "Inaktiv", "Aktivt", "Makulerad", "Fakturerad", "Skriv", "Skriv order", "Skriv följ", "Restn ej", "Skickad", "Levererad", "Order", "Fullständig", "Läs", "Utskrift", "Belopprabatt", "Restn ant", "Avslutat", "Makulerat", "Ej klar"]
