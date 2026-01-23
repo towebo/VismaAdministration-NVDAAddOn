@@ -704,3 +704,7 @@ SafGrid	21547	Inkommande följesedel	Lista
 Edit	23238	Leverantörsfaktura	Bankgiro	
 Edit	23236	Leverantörsfaktura	Plusgiro	
 Edit	23266	Leverantörsfaktura	Skuldkonto	
+Edit	2603	Aktivering av programvaran	Kundnummer	
+Edit	2606	Aktivering av programvaran	Organisationsnummer	
+Edit	23415	Lösenord	Signatur	
+Edit	23416	Lösenord	Lösenord	
