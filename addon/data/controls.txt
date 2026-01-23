@@ -21,7 +21,7 @@ SafGrid	21629	Inventering	Inventeringslista
 SafGrid	24693	Kontakter	Kontaktlista	
 SafGrid	21666	Leverantörsfaktura	Leverantörsfakturor	
 SafGrid	21769	Leverantörsfaktura	Beloppsrader	
-#NAMN?	21679	Leverantörsfaktura		Finns på flera flikar och innehåller olika data. Får hitta annat sätt att identifiera.
+SafGrid	21679	Leverantörsfaktura	Lista	Finns på flera flikar och innehåller olika data. Får hitta annat sätt att identifiera.
 SafGrid	21666	Leverantörer	Leverantörslista	
 SafGrid	21666	Prisomräkning leverantörspriser	Priser	
 SafGrid	7319		Aktiva kolumner	
@@ -172,43 +172,43 @@ Edit	21274		Offertnummer / Datum
 Edit	22414		Verifikationsnummer	
 Edit	24044		F U-nummer	
 Edit	22312		Ursprungsorder / Datum	Fakturakort, flik 1
-Edit	23179		Leverantörsnummer	Leverantörskort, flik 1
-Edit	23180		Namn	
-Edit	23191		Organisationsnummer	
-Button	15162		Hämta uppgifter	
-Edit	23181		Kortnamn	
-Edit	23182		Postadress	
-Edit	23221		Postadress rad 2	
-Edit	23734		GLN	
-Edit	23183		Besöksadress	
-Edit	23184		Postnummer	
-Edit	23185		Ort	
-Edit	23210		Landskod	
-Edit	23186		Land	
-Edit	23187		Telefon	
-Edit	23188		Telefon 2	
-Edit	23189		Telefon 3	
-Edit	23787		Referenskod	
-Edit	23190		Er referens	
-Edit	20748		Mobiltelefon	
-Button	24921		Skicka SMS	
-Edit	23228		E-post	
-Edit	23229		WWW	
-Edit	23209		Vår referens	
-Edit	23206		Sorteringsbegrepp	
-Button	25049		Inaktiv	
-Button	26256		Autogiro	
-Button	23230		Kräver OCR / Referenskod	
-Button	23220		Utlandsbetalningar	
-Edit	23196		Vårt kundnummer	
-Edit	23194		Bankgiro	
-Edit	23195		PlusGiro	
-Edit	21770		Konteringsmall	
-Edit	24824		Resultatenhet	
-Edit	24825		Projekt	
-Edit	23197		Kreditgräns	
-Edit	23193		Språk	
-Edit	23192		Valuta	
+Edit	23179	Leverantörer	Leverantörsnummer	Leverantörskort, flik 1
+Edit	23180	Leverantörer	Namn	
+Edit	23191	Leverantörer	Organisationsnummer	
+Button	15162	Leverantörer	Hämta uppgifter	
+Edit	23181	Leverantörer	Kortnamn	
+Edit	23182	Leverantörer	Postadress	
+Edit	23221	Leverantörer	Postadress rad 2	
+Edit	23734	Leverantörer	GLN	
+Edit	23183	Leverantörer	Besöksadress	
+Edit	23184	Leverantörer	Postnummer	
+Edit	23185	Leverantörer	Ort	
+Edit	23210	Leverantörer	Landskod	
+Edit	23186	Leverantörer	Land	
+Edit	23187	Leverantörer	Telefon	
+Edit	23188	Leverantörer	Telefon 2	
+Edit	23189	Leverantörer	Telefon 3	
+Edit	23787	Leverantörer	Referenskod	
+Edit	23190	Leverantörer	Er referens	
+Edit	20748	Leverantörer	Mobiltelefon	
+Button	24921	Leverantörer	Skicka SMS	
+Edit	23228	Leverantörer	E-post	
+Edit	23229	Leverantörer	WWW	
+Edit	23209	Leverantörer	Vår referens	
+Edit	23206	Leverantörer	Sorteringsbegrepp	
+Button	25049	Leverantörer	Inaktiv	
+Button	26256	Leverantörer	Autogiro	
+Button	23230	Leverantörer	Kräver OCR / Referenskod	
+Button	23220	Leverantörer	Utlandsbetalningar	
+Edit	23196	Leverantörer	Vårt kundnummer	
+Edit	23194	Leverantörer	Bankgiro	
+Edit	23195	Leverantörer	PlusGiro	
+Edit	21770	Leverantörer	Konteringsmall	
+Edit	24824	Leverantörer	Resultatenhet	
+Edit	24825	Leverantörer	Projekt	
+Edit	23197	Leverantörer	Kreditgräns	
+Edit	23193	Leverantörer	Språk	
+Edit	23192	Leverantörer	Valuta	
 Edit	26598		Kundfordranskonto	
 Edit	23198		Betalningsvillkor	
 Edit	23207		Leveransvillkor	
@@ -234,7 +234,7 @@ Edit	22423	Kunder	Kundnummer	Kund, flik 1
 Edit	22423	Medlemmar	Medlemsnummer	Gemensam med medlemmar
 Edit	22487	Medlemmar	Förnamn	
 Edit	22424	Medlemmar	Efternamn	
-Edit	22424		Namn	
+Edit	22424	Kunder	Namn	
 Edit	22444	Kunder	Organisationsnummer	
 Edit	22444	Medlemmar	Personnummer	
 Edit	22426		Postadress rad 1	
@@ -499,7 +499,7 @@ Edit	22766	Inkommande följesedel	Projekt
 Edit	22763	Inkommande följesedel	Anteckning, rad 1	
 Edit	22764	Inkommande följesedel	Anteckning, rad 2	
 Edit	22765	Inkommande följesedel	Anteckning, rad 3	
-SafGrid	21557	Inkommande följesedel	Grid	
+SafGrid	21557	Inkommande följesedel	Beställningar	
 SafGrid	21521	Beställning	Beställningsrader	
 SafGrid	21547	Inkommande följesedel		
 Edit	23660	Ny kund	Efternamn	
@@ -577,12 +577,133 @@ Edit	22781	Beställning	Avvik. Besöksadress
 Edit	22783	Beställning	Avvik. Postnummer	
 Edit	22782	Beställning	Avvik. Ort	
 Edit	23599	Beställning	Avvik. Landskod	
-Edit	22784	Beställning	Avvik. Landskod	
+Edit	22784	Beställning	Avvik. Land	
 Edit	22800	Beställning	Text 1	
 Edit	22801	Beställning	Text 2	
 Edit	22802	Beställning	Text 3	
 SafGrid	21559	Beställning	Artiklar	
 ComboBox	22803	Beställning	Spårningsval	
+Edit	21863	Skapa nytt	Företagsnamn	
+Edit	21864	Skapa nytt	Postadress	
+Edit	21866	Skapa nytt	Postnummer	
+Edit	21867	Skapa nytt	Ort	
+Edit	23974	Skapa nytt	Landskod	
+Edit	21868	Skapa nytt	Land	
+Edit	22053	Skapa nytt	Säte	
+Edit	21874	Skapa nytt	Organisationsnummer	
+Edit	21981	Skapa nytt	VAT/Momsregistreringsnummer	
+Edit	21873	Skapa nytt	PlusGiro	
+Edit	21872	Skapa nytt	Bankgiro	
+Edit	22084	Skapa nytt år	Från och med	
+Edit	22085	Skapa nytt år	Till och med	
+ComboBox	26612	Skapa nytt år	Företagstyp	
+ComboBox	20932	Skapa nytt år	Enskild firma BAS 2025	Kontoplan
+Edit	26734	Inställningar	Swish	
+Edit	23718	Inställningar	BIC	
+Edit	23719	Inställningar	IBAN/bankkontonummer	
+Edit	23723	Inställningar	Landskod	
+Edit	23722	Inställningar	Kontonummer	
+Edit	23721	Inställningar	Bankkod	
+Edit	23720	Inställningar	Bank	
+Edit	23724	Inställningar	Adress	
+Edit	23725	Inställningar	Adress 2	
+Edit	23726	Inställningar	Postnummer	
+Edit	23727	Inställningar	Ort	
+Edit	22074	Inställningar	Leveransnamn	
+Edit	22075	Inställningar	Leveransadress	
+Edit	22076	Inställningar	Leveransadress 2	
+Edit	23729	Inställningar	GLN	
+Edit	22078	Inställningar	Postnummer	
+Edit	22079	Inställningar	Ort	
+Edit	23975	Inställningar	Landskod	
+Edit	22080	Inställningar	Land	
+Edit	22081	Inställningar	Telefon	
+Edit	22082	Inställningar	Referens	
+Edit	22785	Beställning	Er referens	
+Edit	22806	Beställning	Vår referens	
+Edit	23615	Beställning	Kontraktsnummer	
+Edit	24348	Beställning	Referenskod	
+ComboBox	24936	Beställning	Utskriftsval	
+Edit	23176	Beställning	Vår referens	
+Edit	25030	Beställning	Bilaga	
+ComboBox	24935	Leverantörer	Beställning	
+Edit	24990	Leverantörer	Kopia till leverantör	
+ComboBox	24932	Offert	Utskriftsval	
+ComboBox	22378		Momskod frakt	
+ComboBox	22380		Momskod expeditionsavgift	
+Edit	22310	Offert	Ordernummer/datum	
+Edit	26720		Avvikande leveransadress, VAT-nummer	
+Edit	22312	Order	Ursprungsorder	
+SafGrid	21222	Kundfaktura	Betalningar	
+Edit	22563	Avtal	Nästa period, start	
+SafGrid	21337	Avtal	Fakturor	
+Edit	22567	Avtalsmallar	Benämning	
+Edit	21423	Avtalsmallar	Kundkategori	
+Edit	21418	Avtalsmallar	Avtalens startdatum, månad	
+Edit	21417	Avtalsmallar	Avtalens startdatum, dag	
+Edit	21416	Avtalsmallar	Avtalstid, månader	
+Edit	22576	Avtalsmallar	Första fakturan kan skapas, månad	
+Edit	22578	Avtalsmallar	Första fakturan kan skapas, dag	
+Edit	22577	Avtalsmallar	Fakturaintervall, månader	
+Edit	22568	Avtalsmallar	Betalningsvillkor	
+Edit	22569	Avtalsmallar	Leveransvillkor	
+Edit	22570	Avtalsmallar	Leveranssätt	
+Edit	26600	Avtalsmallar	Kundfordranskonto	
+Edit	22571	Avtalsmallar	Resultatenhet	
+Edit	22572	Avtalsmallar	Projekt	
+Edit	22522	Avtalsmallar	Kundkategori	
+Edit	22566	Avtalsmallar	Mallnummer	
+SafGrid	21419	Avtalsmallar	Skapade avtal	
+Edit	26722	Kunder	Hemsida	
+Edit	24747	Kunder	Anteckningar	
+ComboBox	24965	Kunder	Offert	
+Edit	24975	Kunder	Kopia till kund	
+ComboBox	24966	Kunder	Order	
+Edit	24976	Kunder	Kopia till kund	
+ComboBox	24967	Kunder	Följesedel	
+Edit	24977	Kunder	Kopia till kund	
+ComboBox	24968	Kunder	Extra orderdokument	
+Edit	24978	Kunder	Kopia till kund	
+ComboBox	24931	Kunder	Faktura	
+Edit	24979	Kunder	Kopia till kund	
+ComboBox	24969	Kunder	Kreditfaktura	
+Edit	24980	Kunder	Kopia till kund	
+ComboBox	24970	Kunder	Räntefaktura	
+Edit	24981	Kunder	Kopia till kund	
+ComboBox	24971	Kunder	Kontantnota	
+Edit	24982	Kunder	Kopia till kund	
+ComboBox	24972	Kunder	Extra fakturadokument	
+Edit	24983	Kunder	Kopia till kund	
+SafGrid	21211	Kunder	Kundens artikelnummer	
+Edit	22715	Prislistor	Kod	
+Edit	22717	Prislistor	Valuta	
+Edit	22739	Prislistor	Språk	
+Edit	22719	Prislistor	Anteckning	
+Edit	22731	Prislistor	Från, rad 1	
+Edit	22735	Prislistor	Avrundning, rad 1	
+Edit	22732	Prislistor	Från, rad 2	
+Edit	22736	Prislistor	Avrundning, rad 2	
+Edit	22733	Prislistor	Från, rad 3	
+Edit	22737	Prislistor	Avrundning, rad 3	
+Edit	22734	Prislistor	Från, rad 4	
+Edit	22738	Prislistor	Avrundning, rad 4	
+SafGrid	21573	Prislistor	Priser	
+SafGrid	21574	Prislistor	Stafflingar	
+Edit	22729	Prislistor	Procent	
+Edit	22730	Prislistor	Belopp	
+Edit	22727	Prislistor	Prislista	
+Edit	22728	Prislistor	Leverantörsprislista	
+Edit	22488	Kundrabatter	Avtalsnummer	
+Edit	22489	Kundrabatter	Benämning	
+Edit	22490	Kundrabatter	Prislista	
+Edit	22492	Kundrabatter	Radrabatt	
+Edit	22491	Kundrabatter	Fakturarabatt	
+SafGrid	21217	Kundrabatter	Artikelgrupper	
+SafGrid	21216	Kundrabatter	Artiklar	
+SafGrid	21547	Inkommande följesedel	Lista	
+Edit	23238	Leverantörsfaktura	Bankgiro	
+Edit	23236	Leverantörsfaktura	Plusgiro	
+Edit	23266	Leverantörsfaktura	Skuldkonto	
 Edit	2603	Aktivering av programvaran	Kundnummer	
 Edit	2606	Aktivering av programvaran	Organisationsnummer	
 Edit	23415	Lösenord	Signatur	
