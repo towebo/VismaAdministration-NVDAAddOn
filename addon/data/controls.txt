@@ -708,3 +708,25 @@ Edit	2603	Aktivering av programvaran	Kundnummer
 Edit	2606	Aktivering av programvaran	Organisationsnummer	
 Edit	23415	Lösenord	Signatur	
 Edit	23416	Lösenord	Lösenord	
+Edit	22825	Manuell inleverans	Lönummer	
+Edit	22818	Manuell inleverans	Datum	
+Edit	22828	Manuell inleverans	Artikelnummer	
+Edit	22613	Manuell inleverans	Benämning	
+Edit	22619	Manuell inleverans	Enhet	
+Edit	22831	Manuell inleverans	Antal	
+Edit	22834	Manuell inleverans	Pris styck	
+Edit	22835	Manuell inleverans	Frakt styck	
+Edit	22846	Manuell inleverans	Kommentar	
+Edit	22843	Manuell inleverans	Kontonummer	
+Edit	22844	Manuell inleverans	Resultatenhet	
+Edit	22845	Manuell inleverans	Projekt	
+Edit	22825	Manuell utleverans	Löpnummer	
+Edit	22818	Manuell utleverans	Datum	
+Edit	22828	Manuell utleverans	Artikelnummer	
+Edit	22613	Manuell utleverans	Benämning	
+Edit	22619	Manuell utleverans	Enhet	
+Edit	22831	Manuell utleverans	Antal	
+Edit	22846	Manuell utleverans	Kommentar	
+Edit	22843	Manuell utleverans	Kontonummer	
+Edit	22844	Manuell utleverans	Resultatenhet	
+Edit	22845	Manuell utleverans	Projekt	
