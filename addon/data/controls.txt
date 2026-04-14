@@ -730,3 +730,7 @@ Edit	22846	Manuell utleverans	Kommentar
 Edit	22843	Manuell utleverans	Kontonummer	
 Edit	22844	Manuell utleverans	Resultatenhet	
 Edit	22845	Manuell utleverans	Projekt	
+Edit	24583	Leverantörsfaktura	Dokument	
+Edit	23261	Leverantörsfaktura	Anmärkning 1	
+Edit	23262	Leverantörsfaktura	Anmärkning 2	
+Edit	23263	Leverantörsfaktura	Anmärkning 3	
