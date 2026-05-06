@@ -31,39 +31,39 @@ SafGrid	23569		Rättigheter
 SafGrid	21346	Medlemmar	Medlemslista	
 SysTabControl32	59648		Fliksidor	
 Edit	22612		Artikelnummer	Artikelkort, flik 1
-Edit	22613		Benämning	
-Edit	22614		Annan benämning	
-Edit	22615		Kortnamn	
-Edit	22616		Artikelgrupp	
-Edit	22619		Enhet	
-Edit	22617		Konteringskod	
-Edit	22709		Streckkod	
-ComboBox	21657		Streckkodstyp	
-Edit	22620		Sorteringsbegrepp	
-Edit	22643		Exportkod	
-Button	22641		Restnotera ej	
-Button	22618		Lagervara	
-Button	22652		Utgående	
-Button	25050		Inaktiv	
-Button	23606		Webshopartikel	
-Edit	22708		Dokument	
-Edit	22644		Anmärkning 1	
-Edit	22645		Anmärkning 2	
-Edit	20593		Anteckningar	
-Edit	24279		Ursprungslandskod	Artikelkort, flik 2
-Edit	22642		Ursprungsland	
-Edit	22628		Lagerplats	
-Edit	22629		Vikt	
-Edit	22630		Volym	
-Button	22657		Lagervärdet är inaktivt	
-Edit	22627		Normal leveranstid	Artikelkort, flik 3
-Edit	22631		Huvudleverantör	
-Edit	22653		Kalkylpris, inpris	
-Edit	22654		Kalkylpris, frakt	
-Edit	22655		Kalkylpris, övrigt	
-Edit	22623		Beställningspunkt	
-Edit	22625		Maxnivå	
-Edit	22624		Minsta beställning	
+Edit	22613	Artiklar och tjänster	Benämning	
+Edit	22614	Artiklar och tjänster	Annan benämning	
+Edit	22615	Artiklar och tjänster	Kortnamn	
+Edit	22616	Artiklar och tjänster	Artikelgrupp	
+Edit	22619	Artiklar och tjänster	Enhet	
+Edit	22617	Artiklar och tjänster	Konteringskod	
+Edit	22709	Artiklar och tjänster	Streckkod	
+ComboBox	21657	Artiklar och tjänster	Streckkodstyp	
+Edit	22620	Artiklar och tjänster	Sorteringsbegrepp	
+Edit	22643	Artiklar och tjänster	Exportkod	
+Button	22641	Artiklar och tjänster	Restnotera ej	
+Button	22618	Artiklar och tjänster	Lagervara	
+Button	22652	Artiklar och tjänster	Utgående	
+Button	25050	Artiklar och tjänster	Inaktiv	
+Button	23606	Artiklar och tjänster	Webshopartikel	
+Edit	22708	Artiklar och tjänster	Dokument	
+Edit	22644	Artiklar och tjänster	Anmärkning 1	
+Edit	22645	Artiklar och tjänster	Anmärkning 2	
+Edit	20593	Artiklar och tjänster	Anteckningar	
+Edit	24279	Artiklar och tjänster	Ursprungslandskod	Artikelkort, flik 2
+Edit	22642	Artiklar och tjänster	Ursprungsland	
+Edit	22628	Artiklar och tjänster	Lagerplats	
+Edit	22629	Artiklar och tjänster	Vikt	
+Edit	22630	Artiklar och tjänster	Volym	
+Button	22657	Artiklar och tjänster	Lagervärdet är inaktivt	
+Edit	22627	Artiklar och tjänster	Normal leveranstid	Artikelkort, flik 3
+Edit	22631	Artiklar och tjänster	Huvudleverantör	
+Edit	22653	Artiklar och tjänster	Kalkylpris, inpris	
+Edit	22654	Artiklar och tjänster	Kalkylpris, frakt	
+Edit	22655	Artiklar och tjänster	Kalkylpris, övrigt	
+Edit	22623	Artiklar och tjänster	Beställningspunkt	
+Edit	22625	Artiklar och tjänster	Maxnivå	
+Edit	22624	Artiklar och tjänster	Minsta beställning	
 ComboBox	22673		Spårning	Artikelkort, flik 6
 Edit	22308	Order	Ordernummer	Orderkort, flik 1
 Edit	22308	Kundfaktura	Fakturanummer	
@@ -708,3 +708,29 @@ Edit	2603	Aktivering av programvaran	Kundnummer
 Edit	2606	Aktivering av programvaran	Organisationsnummer	
 Edit	23415	Lösenord	Signatur	
 Edit	23416	Lösenord	Lösenord	
+Edit	22825	Manuell inleverans	Lönummer	
+Edit	22818	Manuell inleverans	Datum	
+Edit	22828	Manuell inleverans	Artikelnummer	
+Edit	22613	Manuell inleverans	Benämning	
+Edit	22619	Manuell inleverans	Enhet	
+Edit	22831	Manuell inleverans	Antal	
+Edit	22834	Manuell inleverans	Pris styck	
+Edit	22835	Manuell inleverans	Frakt styck	
+Edit	22846	Manuell inleverans	Kommentar	
+Edit	22843	Manuell inleverans	Kontonummer	
+Edit	22844	Manuell inleverans	Resultatenhet	
+Edit	22845	Manuell inleverans	Projekt	
+Edit	22825	Manuell utleverans	Löpnummer	
+Edit	22818	Manuell utleverans	Datum	
+Edit	22828	Manuell utleverans	Artikelnummer	
+Edit	22613	Manuell utleverans	Benämning	
+Edit	22619	Manuell utleverans	Enhet	
+Edit	22831	Manuell utleverans	Antal	
+Edit	22846	Manuell utleverans	Kommentar	
+Edit	22843	Manuell utleverans	Kontonummer	
+Edit	22844	Manuell utleverans	Resultatenhet	
+Edit	22845	Manuell utleverans	Projekt	
+Edit	24583	Leverantörsfaktura	Dokument	
+Edit	23261	Leverantörsfaktura	Anmärkning 1	
+Edit	23262	Leverantörsfaktura	Anmärkning 2	
+Edit	23263	Leverantörsfaktura	Anmärkning 3	
